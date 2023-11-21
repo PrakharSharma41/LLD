@@ -1,0 +1,35 @@
+enabling concurrency:
+1-> using synchronized for critical section enabling sequental access to critical section 
+
+synchronized cannot help us in case of distributed system as different processes are running on different servers in this case
+
+using distributed concurrency control:
+1-> optimistic concurrency control (read uncommitted and read committed isolation level)
+2-> pessimistic concurrency control (repeatable read and serializable isolation level)
+    deadlock can occur in 2 approach
+usage of transaction:
+    transaction helps to achieve integrity, means it help us to avoid inconsistency in our database.
+    
+what is db locking:
+    db locking helps us to make sure that no other transaction update the locked rows.
+
+    shared lock: multiple transaction can have lock but read only, only one transaction can have write authorization
+    exclusive lock: another transaction cannot use the lock even for reading    
+
+what are isolation levels present:
+    each transaction is isolated from other transactions.
+    4 levels:
+    read uncommitted(no shared or exclusive lock), read committed(shared lock acquired and released as soon as possible, write lock is kept till end of transaction), 
+    repeatable read(both shared and exclusive lock are release at end of transaction), serializable(same as repeatable read plus applied on range of rows)
+    highest consistency                                                                                                                                                                                                                                  lowest consistency     
+
+    these isolation levels solve below 3 problems
+
+    dirty read:
+        if transaction a is reading the data which is written by transaction b and not yet committed, then that read is called dirty read 
+    non repeatable read:
+        if suppose transaction a, reads the same row several times and there is a chance that it reads different value.
+    phantom read:
+        if suppose transaction a, executes same query several times and there is a chance that the rows returned are different.
+
+        

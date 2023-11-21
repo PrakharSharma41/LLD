@@ -1,0 +1,10 @@
+
+application usage: 
+    design atm/ vending machine
+    design loggers
+
+it is used when we send a request and we dont know who will handle the request
+
+in this we have multiple handlers to handle the request, and one handler will pass on the request to another handler if it cant handle it
+
+all the concrete handlers class will extend the handler abstract class.

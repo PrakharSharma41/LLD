@@ -1,0 +1,3 @@
+
+this design pattern is used when there are multiple child class extending from parent class and and the method they
+are overriding is same across all child classes, then this design pattern is used.

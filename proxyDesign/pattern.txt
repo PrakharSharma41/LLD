@@ -1,0 +1,4 @@
+use case:
+it is used when we need to create a proxy before accessing real object, i.e provide access restrictions in proxy methods
+can be used in caching of object 
+pre and post processing for a request

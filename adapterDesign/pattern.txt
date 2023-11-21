@@ -1,0 +1,5 @@
+it is bridge between existing interface and expected interface
+use case:
+when our server gives us response in a format that is different than what we want
+
+

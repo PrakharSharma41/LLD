@@ -1,0 +1,25 @@
+in rate limiter redis is centralized stored used to fetch counter for a user,
+sorted set data structure in redis is used
+In Redis, a sorted set is a data structure that represents an ordered collection of unique elements, where each element is associated with a score. The elements in a sorted set are ordered based on their scores,
+and the ordering is non-decreasing, meaning that elements with the same score are ordered lexicographically.
+
+
+In Redis, sorted sets enable atomic operations through the use of atomic commands provided by the server. Atomic operations in Redis are operations that are executed as a single, indivisible unit, ensuring consistency in the face of concurrent access from multiple clients.
+
+The atomicity of sorted set operations is crucial for scenarios where multiple clients may be simultaneously modifying the sorted set. Some of the key atomic operations provided by Redis for sorted sets include:
+
+ZADD - Add a member with a score to the sorted set:
+
+The ZADD command allows you to add one or more members with their associated scores to the sorted set. This operation is atomic, meaning that it will either add all specified members or none if an error occurs.
+redis
+Copy code
+ZADD myset 1 "one"
+ZREM - Remove one or more members from the sorted set:
+
+The ZREM command removes one or more specified members from the sorted set. Like ZADD, this operation is atomic.
+redis
+Copy code
+ZREM myset "one"
+ZINCRBY - Increment the score of a member in the sorted set:
+
+The ZINCRBY command increments the score of a specified member in the sorted set by a specified increment. This operation is atomic.

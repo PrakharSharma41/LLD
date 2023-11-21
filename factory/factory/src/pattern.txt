@@ -1,0 +1,4 @@
+
+factory pattern
+
+used when object are created conditionally      

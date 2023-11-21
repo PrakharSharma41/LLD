@@ -1,0 +1,5 @@
+
+this pattern is used when we want to create an object only once and use it throughout the project
+make constructor as private
+create a static method that returns that class
+create a static field to store private object
