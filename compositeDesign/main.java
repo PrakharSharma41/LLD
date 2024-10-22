@@ -5,8 +5,8 @@ public class main {
 
         Directory movieDirectory = new Directory("Movie",SystemType.Directory);
  
-         FileSystem border = new File("Border",SystemType.File);
-         movieDirectory.add(border);
+        FileSystem border = new File("Border",SystemType.File);
+        movieDirectory.add(border);
  
         Directory comedyMovieDirectory = new Directory("ComedyMovie",SystemType.Directory);
         File hulchul = new File("Hulchul",SystemType.File);

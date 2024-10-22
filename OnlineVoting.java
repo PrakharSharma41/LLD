@@ -39,30 +39,30 @@ public class OnlineVoting {
         return timesVotesHaveBeenCast.get(left)<=time?timesVotesHaveBeenCast.get(left):timesVotesHaveBeenCast.get(left-1);
     }
     public static void main(String[] args) {
-        timesVotesHaveBeenCast=new ArrayList<>(Arrays.asList(1,2,3,4,6,7,8));
-        System.out.println(getTimeEqualToOrLessThan(5));
-        List<Integer>candidatesIdRange=new ArrayList<>();
-        candidatesIdRange.add(1);candidatesIdRange.add(10);
-        Scanner sc=new Scanner(System.in);
-        int user_id,candidate_id,time=0,input;
-        while(true){
-            time++;
-            System.out.println("enter user id");
-            user_id=sc.nextInt();
-            if(userVoted.contains(user_id)){
-                System.out.println("you have already voted");continue;
-            }
-            userVoted.add(user_id);
-            System.out.println("Press 1 for exit and 2 to vote ");
-            input=sc.nextInt();
-            if(input==1)break;
-            else{
-                System.out.println("enter candidate id to vote for");
-                candidate_id=sc.nextInt();
-                process_vote(time, candidate_id);
-                System.out.println("winning candidate id is "+getPersonLeadingAtTimeT(time));
-            }
-        }
-        sc.close();
+        // timesVotesHaveBeenCast=new ArrayList<>(Arrays.asList(1,2,3,4,6,7,8));
+        // System.out.println(getTimeEqualToOrLessThan(5));
+        // List<Integer>candidatesIdRange=new ArrayList<>();
+        // candidatesIdRange.add(1);candidatesIdRange.add(10);
+        // Scanner sc=new Scanner(System.in);
+        // int user_id,candidate_id,time=0,input;
+        // while(true){
+        //     time++;
+        //     System.out.println("enter user id");
+        //     user_id=sc.nextInt();
+        //     if(userVoted.contains(user_id)){
+        //         System.out.println("you have already voted");continue;
+        //     }
+        //     userVoted.add(user_id);
+        //     System.out.println("Press 1 for exit and 2 to vote ");
+        //     input=sc.nextInt();
+        //     if(input==1)break;
+        //     else{
+        //         System.out.println("enter candidate id to vote for");
+        //         candidate_id=sc.nextInt();
+        //         process_vote(time, candidate_id);
+        //         System.out.println("winning candidate id is "+getPersonLeadingAtTimeT(time));
+        //     }
+        // }
+        // sc.close();
     }
 }

@@ -11,7 +11,7 @@ public class SlidingWindowRateLimiter {
         this.maxRequests = maxRequests;
         this.requestTimestamps = new ArrayDeque<>();
     }
-
+    
     public boolean allowRequest() {
         long currentTime = System.currentTimeMillis() / 1000; // Convert to seconds
 
@@ -43,7 +43,7 @@ public class SlidingWindowRateLimiter {
 
             // Simulate a delay between requests
             try {
-                Thread.sleep(200);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

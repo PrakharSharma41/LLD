@@ -68,7 +68,6 @@ public class SnakeGame {
         Scanner sc=new Scanner(System.in);
         String input;int x;
         while(true){
-            System.out.println("PRESS 1 TO EXIT");
             x=sc.nextInt();
             sc.nextLine();
             if(x==1)break;

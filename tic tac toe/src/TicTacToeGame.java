@@ -8,7 +8,6 @@ import Model.Player;
 import Model.PlayingPieceO;
 import Model.PlayingPieceX;
 import javafx.util.Pair;
-
 public class TicTacToeGame {
     Deque<Player> players;
     Board gameBoard;
@@ -39,7 +38,7 @@ public class TicTacToeGame {
             int r=Integer.parseInt(values[0]),c=Integer.parseInt(values[1]);
             boolean pieceAdded=gameBoard.addPiece(r, c, playerTurn.PlayingPiece);
             if(!pieceAdded){
-                System.out.println("Incorredt possition chosen, try again");
+                System.out.println("Incorrect position chosen, try again");
                 players.addFirst(playerTurn);
                 continue;
             }
