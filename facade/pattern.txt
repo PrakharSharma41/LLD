@@ -1,0 +1,5 @@
+
+scenario1:
+when we want to hide system complexity from users
+here client wants only specific functions from EmployeeDao class so a facade layer(EmployeeFacade) is created
+

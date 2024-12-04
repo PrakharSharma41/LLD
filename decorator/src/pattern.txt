@@ -1,5 +1,6 @@
 
 decorator pattern
+it is strucutral design pattern(creating complex small small objects not constructing new objects like creational design pattern(builder))
 int this we have created an object with a feature, 
 now to add a feature we wrap that object in a decorator(also an object)
  and then add additional feature to it.

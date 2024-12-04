@@ -2,4 +2,6 @@ it is bridge between existing interface and expected interface
 use case:
 when our server gives us response in a format that is different than what we want
 
+can be used with xml to json parsing, when client wants json but server responds with 
+xml then we can use adapte in between to convert from xml to json
 

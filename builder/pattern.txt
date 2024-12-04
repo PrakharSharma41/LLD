@@ -1,0 +1,9 @@
+
+it is creational design pattern(creation of objects)
+when a class has multiple properties and most of them are optional properties 
+then in constructor we have to unnecessarily pass multiple parameters
+or we have to unnecessarily create multiple constructors
+builder design pattern is  used here
+
+step by step objects are created
+director is a layer which calls methods of builder class in specific order 
