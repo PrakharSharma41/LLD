@@ -1,0 +1,21 @@
+it is structural design pattern
+this pattern reduces memory usage by sharing data among multiple objects
+
+where to use this pattern:
+1. memory is limited
+2. when objects share the data
+2.1 intrinsic data: shared among objects and remain same once defined one value
+2.2 extrinsic data: changes based on client input and differs from one object to another
+3. creation of objects is expensive
+
+
+How to solve issue:
+1.  from object, remove all extrinsic data and keep intrinsic data(this objects is called flyweight object)
+2.  this flyweight class can be immutable
+3.  extrinsic data can be passed to flyweight class in method parameter
+4.  once flyweight object is created, it is cached and reused whenever required
+
+
+in word processor, we cannot create separate class for each character 
+since each character have high probability of being same
+for each character character,font type, size can be same

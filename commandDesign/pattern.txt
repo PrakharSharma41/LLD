@@ -1,0 +1,8 @@
+it is behavioural design pattern
+
+command pattern separates the logic of:
+receiver, invoker, command
+
+command interface will have concrete implementations, these implementations
+have receivers, invokers have command
+client(Main) use invoker

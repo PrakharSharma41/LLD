@@ -1,0 +1,15 @@
+beavioural design pattern
+it provides a way to access element of a collection sequentially without 
+exposing underlying representation of collection
+
+there can be many concreteIterator in the diagram attached 
+aggregate is also an interface which collects the data 
+in java collection interface is the aggregator
+concrete iterator is classes like queue, arraylist etc
+in out case library is concrete iterator
+
+
+Role of the Aggregator
+Holds the Collection: The Aggregator acts as a container for the collection of elements.
+Creates the Iterator: It provides a method to create an instance of the Iterator that can traverse its elements.
+Encapsulates Collection Logic: It abstracts the implementation details of how the collection is stored, ensuring users interact with the collection through a consistent interface.

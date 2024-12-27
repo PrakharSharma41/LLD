@@ -1,0 +1,17 @@
+this is a group of of pattern that consists of prototype, factory,abstract factoty,
+builder,singleton design pattern
+
+prototype:
+when we want to provide clone functionality to a class
+
+singleton:
+used when we have to create only 1 instance of class
+can be done with eager, lazy, synchronized, double locking
+factory:
+used when all object creation and its business logic need to be kept at one place
+
+abstract factory:
+returns a factory
+
+builder:
+when we want to create object step by step
