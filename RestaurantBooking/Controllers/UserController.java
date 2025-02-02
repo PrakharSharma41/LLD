@@ -4,6 +4,7 @@ import RestaurantBooking.model.User;
 import RestaurantBooking.model.UserType;
 import RestaurantBooking.service.UserService;
 
+
 public class UserController {
     UserService userService;
 
