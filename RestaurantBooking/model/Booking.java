@@ -11,6 +11,5 @@ public class Booking {
         this.numberOfTablesBooked = numberOfTablesBooked;
         this.schedule = schedule;
         this.day=day;
-    }
-    
+    }    
 }

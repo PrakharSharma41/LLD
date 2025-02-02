@@ -11,6 +11,7 @@ import RestaurantBooking.model.User;
 import RestaurantBooking.model.UserType;
 
 public class RestaurantService {
+    // this acts as repository
     HashMap<String,Restaurant>res;
     int maxDays;
     // RestaurantSearchStrategy 
@@ -28,8 +29,7 @@ public class RestaurantService {
         }else{
             System.out.println("not owner");
             return null;
-        }
-        
+        }        
     } 
     public void setSchedules(Restaurant restaurant,int numberOfTables){
         Map<Integer,List<Schedule>>availableSchedule=restaurant.getAvailableSchedule();
@@ -60,5 +60,4 @@ public class RestaurantService {
         }
         return restaurants;
     }
-
 }

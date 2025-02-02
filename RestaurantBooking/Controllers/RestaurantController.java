@@ -8,6 +8,7 @@ import RestaurantBooking.model.User;
 import RestaurantBooking.service.RestaurantService;
 
 public class RestaurantController {
+    // this acts as service
     RestaurantService restaurantService;
     
     public RestaurantController() {
