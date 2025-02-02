@@ -1,4 +1,4 @@
-this is a group of of pattern that consists of prototype, factory,abstract factoty,
+this is a group of of pattern that consists of prototype, factory,abstract factory,
 builder,singleton design pattern
 
 prototype:

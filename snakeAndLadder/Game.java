@@ -1,29 +1,30 @@
 import java.util.Deque;
 
+import entities.Board;
+import entities.Cell;
+import entities.Dice;
+import entities.Player;
+
 public class Game {
     Board board;
     Dice dice;
-    Deque<Player>playersList;
     Player winner;
-    public Game(){
-        initializeGame();
+    PlayerController playerController;
+    public Game(int sz,int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions,int numberOfPlayer,int[][]playerPosition){
+        initializeGame(sz, numberOfSnakes,snakesPositions,  numberOfLadders,laddersPositions,numberOfPlayer,playerPosition);
     }
-    private void initializeGame(){
-        Board board=new Board(10,5,4);
+    private void initializeGame(int sz,int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions,int numberOfPlayer,int[][]playersPosition){
+        board=new Board(sz,numberOfLadders,snakesPositions,numberOfLadders,laddersPositions);
         dice=new Dice(1);
-        addPlayers();
-    }
-    private void addPlayers() {
-        Player player1 = new Player("p1", 0);
-        Player player2 = new Player("p2", 0);
-        playersList.add(player1);
-        playersList.add(player2);
+        // provide dice rolling strategy here
+        playerController.addPlayers(numberOfPlayer,playersPosition);
     }
     public void startGame() {
+        Deque<Player>playersList=playerController.playersList;
         while(winner==null){
             Player player=playersList.pop();
             playersList.addLast(player);
-            int diceNumber=dice.rollDice();
+            int diceNumber=dice.rollDice(); // use diceStrategy here
             int playerNewPosition = player.currentPosition + diceNumber;
             playerNewPosition = jumpCheck(playerNewPosition);
             player.currentPosition=playerNewPosition;
@@ -37,7 +38,7 @@ public class Game {
         if(playerNewPosition>board.cells.length*board.cells.length-1){
             return playerNewPosition;
         }
-        Cells cell = board.getCell(playerNewPosition);
+        Cell cell = board.getCell(playerNewPosition);
         if(cell!=null){
             playerNewPosition=cell.jump.end;
         }

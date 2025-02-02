@@ -1,0 +1,3 @@
+when we want all classes to follow specific steps to process the task 
+but also need to provide flexibility that each class can have their own logic 
+in that specific steps

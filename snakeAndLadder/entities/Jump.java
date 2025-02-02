@@ -1,3 +1,4 @@
+package entities;
 
 public class Jump {
     int start,end;

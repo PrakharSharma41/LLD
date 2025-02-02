@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LetterFactory {
     private static Map<Character,ILetter>mp=new HashMap<>();
-    public static ILetter creaLetter(char characterValue){
+    public static ILetter createLetter(char characterValue){
         if(mp.containsKey(characterValue)){
             return mp.get(characterValue);
         }else{

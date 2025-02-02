@@ -1,5 +1,7 @@
 package flyweightDesign;
 
+
+//not recommended
 public class Robot{
     int X;
     int Y;

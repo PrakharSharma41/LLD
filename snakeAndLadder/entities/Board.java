@@ -1,19 +1,24 @@
+package entities;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-class Board{
-    Cells[][] cells;
-    public Board(int size,int numberOfSnakes, int numberOfLadders){
+public class Board{
+    Cell[][]cells;
+    int boardSize;
+    public Board(int size,int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions){
+        boardSize=size;
         createBoard(size);
-        addSnakeAndLadder(numberOfSnakes,numberOfLadders);
+        addSnakeAndLadderToBoard(numberOfSnakes, snakesPositions, numberOfLadders, laddersPositions);
     }
-    private void addSnakeAndLadder(int numberOfSnakes, int numberOfLadders) {
+    private void addSnakeAndLadderToBoard(int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions) {
         while(numberOfSnakes>0){
             int snakeStart=(int)(Math.random()*(cells.length*cells.length));
             int snakeEnd=(int)(Math.random()*(cells.length*cells.length));            
             // int snakeStart=ThreadLocalRandom.current().nextInt(1,cells.length*cells.length-1);
             if(snakeEnd>snakeStart)continue;
             Jump snakeHead=new Jump(snakeStart,snakeEnd);
-            Cells cells=getCell(snakeStart);
+            Cell cells=getCell(snakeStart);
             cells.jump=snakeHead;
             numberOfSnakes--;
         }
@@ -23,20 +28,20 @@ class Board{
             // int snakeStart=ThreadLocalRandom.current().nextInt(1,cells.length*cells.length-1);
             if(ladderStart>ladderEnd)continue;
             Jump snakeHead=new Jump(ladderStart,ladderEnd);
-            Cells cells=getCell(ladderStart);
+            Cell cells=getCell(ladderStart);
             cells.jump=snakeHead;
             numberOfLadders--;
         }
     }
     private void createBoard(int size){
-        cells=new Cells[size][size];
+        cells=new Cell[size][size];
         for(int i=0;i<size;i++){
             for(int j=0;j<size;j++){
-                cells[i][j]=new Cells();
+                cells[i][j]=new Cell();
             }
         }        
     }
-    public Cells getCell(int position){
+    public Cell getCell(int position){
         int row=position/cells.length;
         int column=position%cells.length;
         return cells[row][column];

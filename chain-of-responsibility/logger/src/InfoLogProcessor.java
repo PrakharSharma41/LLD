@@ -12,5 +12,4 @@ public class InfoLogProcessor extends LogProcessor{
             super.log(level, message);
         }
     }
-    
 }

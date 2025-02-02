@@ -1,0 +1,13 @@
+it is behavioural pattern
+
+provides an ability to revert the object to previous state i.e undo capability 
+and it does not expose object internal implementation
+
+originator:
+represents the object for which state need to be saved and restored
+
+memento:
+represents an object which holds the state of originator
+
+caretaker:
+manages the list of states(i.e list of memento)

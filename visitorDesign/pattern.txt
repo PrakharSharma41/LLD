@@ -1,0 +1,8 @@
+it is behavioural design pattern
+it allows to add new operations to existing classes without changing their structures
+
+it does double dispatch to achieve this
+double dispatch means method which need to be invoked decided by caller object and
+the object passed in argument 
+
+it is element and visitor in uml diagram

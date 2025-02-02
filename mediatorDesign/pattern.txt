@@ -1,0 +1,7 @@
+it is behavioural design pattern
+it encourages loose coupling by keeping objects from referring to each other 
+explicitly and allows them to communicate through a mediator object
+
+used in online auction system and airline management system
+
+no two bidder interact with each other, they interact using mediator

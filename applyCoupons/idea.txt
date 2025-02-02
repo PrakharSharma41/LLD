@@ -1,0 +1,4 @@
+on a product multiple coupons can be applied
+we can use decorator pattern, we can add certain capabilities(coupons) to a certain product
+
+
