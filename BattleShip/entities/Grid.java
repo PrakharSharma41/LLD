@@ -1,10 +1,10 @@
-package BattleShip;
+package BattleShip.entities;
 
 import java.util.List;
 
 public class Grid {
     Cell[][]cell;
-    int gridSize;
+    public int gridSize;
     public Grid(int gridSize) {
         this.gridSize = gridSize;
         cell=new Cell[gridSize][gridSize];

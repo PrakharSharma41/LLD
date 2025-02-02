@@ -1,8 +1,10 @@
-package BattleShip;
+package BattleShip.controllers;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import BattleShip.entities.Player;
 
 public class PlayerController {
     List<Player>allPlayers;

@@ -1,4 +1,4 @@
-package BattleShip;
+package BattleShip.entities;
 
 public class Ship {
     String name;

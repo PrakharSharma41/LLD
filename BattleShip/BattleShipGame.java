@@ -4,16 +4,27 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import BattleShip.controllers.PlayerController;
+import BattleShip.controllers.ShipController;
+import BattleShip.entities.Cell;
+import BattleShip.entities.Grid;
+import BattleShip.entities.Player;
+import BattleShip.entities.Ship;
+import BattleShip.strategy.MissileFireStrategy;
+import BattleShip.strategy.RandomFireStrategy;
+
 public class BattleShipGame {
     Grid grid;
     PlayerController playerController;
     ShipController shipController;
     Player winnerPlayer;
+    MissileFireStrategy missileFireStrategy;
     public BattleShipGame(int gridSize) {
         winnerPlayer=null;
         playerController=new PlayerController();
         shipController=new ShipController();
         grid=new Grid(gridSize);
+        missileFireStrategy=new RandomFireStrategy();
     }
     public void createPlayers(List<String>players){
         playerController.createPlayer(players);
@@ -28,17 +39,13 @@ public class BattleShipGame {
     }
     public void startGame(){
         List<Player>players=playerController.getPlayers();
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));        
         while(winnerPlayer==null){
             Player player=players.removeFirst();
+            System.out.println("player "+player+" turn");
             players.addLast(player);
-            System.out.println("enter space separated row and column of where to fire the missile by "+player.getName());
             try{
-                String input=br.readLine();
-                String[] inputs=input.split(" ");
-                int row=Integer.parseInt(inputs[0]);
-                int column=Integer.parseInt(inputs[1]);
-                play(grid.getPlayer(row, column),row,column);
+                Cell cell=missileFireStrategy.hitcell(grid, player);
+                play(cell.getPlayer(),cell);
                 isWinnerFound();
                 if(winnerPlayer!=null){
                     System.out.println("Player :"+winnerPlayer+" won the game");
@@ -49,8 +56,8 @@ public class BattleShipGame {
             }
         }
     }
-    public boolean play(Player player,int row,int column){
-        Ship ship=grid.getShipAtLocation(row, column);
+    public boolean play(Player player,Cell cell){
+        Ship ship=cell.getShip();
         System.out.println("ship at this location is "+ship);
         if(ship==null){
             System.out.println("ship missed by player: "+player.getName());
