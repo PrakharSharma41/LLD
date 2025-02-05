@@ -25,5 +25,4 @@ class ConsumerImpl implements Consumer{
         this.strategy.process(message);
         System.out.println("message processed by "+name+" message payload is "+message.payload);
     }
-
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import BattleShip.entities.Player;
 
-public class PlayerController {
+public class PlayerController { // this should be named as player service
     List<Player>allPlayers;
     public PlayerController() {
         allPlayers=new LinkedList<>();

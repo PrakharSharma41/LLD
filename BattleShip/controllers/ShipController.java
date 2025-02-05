@@ -1,6 +1,8 @@
-package BattleShip;
+package BattleShip.controllers;
 
 import java.util.HashMap;
+
+import BattleShip.entities.Ship;
 
 public class ShipController {
     private HashMap<Ship,Boolean>isShipDestroyed;
