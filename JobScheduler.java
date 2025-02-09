@@ -126,10 +126,10 @@ public class JobScheduler {
     }
     public static void main(String[] args) {
         JobScheduler schedulerService = new JobScheduler(10);
-        schedulerService.schedule(getRunnableTask("Task1"), 1);
-        schedulerService.scheduleAtFixedRate(getRunnableTask("Task2"),1, 2);
-        schedulerService.scheduleWithFixedDelay(getRunnableTask("Task3"),1,2);
-        schedulerService.scheduleAtFixedRate(getRunnableTask("Task4"),1, 2);
+        schedulerService.schedule(getRunnableTask("Task1"), 1000);
+        schedulerService.scheduleAtFixedRate(getRunnableTask("Task2"),1, 1000);
+        schedulerService.scheduleWithFixedDelay(getRunnableTask("Task3"),1,2000);
+        schedulerService.scheduleAtFixedRate(getRunnableTask("Task4"),1, 2000);
         Thread schedulerThread = new Thread(schedulerService::start);
         schedulerThread.start();
         try{
