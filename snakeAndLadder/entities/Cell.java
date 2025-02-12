@@ -1,7 +1,7 @@
 package entities;
 
 public class Cell {
-    Jump jump;
+    public Jump jump;
 
     public Jump getJump() {
         return jump;

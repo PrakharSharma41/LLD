@@ -1,7 +1,7 @@
 package entities;
 
 public class Jump {
-    int start,end;
+    public int start,end;
 
     public Jump(int start, int end) {
         this.start = start;

@@ -31,68 +31,76 @@ public class JobScheduler {
             lock.unlock();
         }
     }
-    public void start(){
-        long timeToSleep=0;
-        while(true){
-            if (workerExecutor.isShutdown() && workerExecutor.isTerminated()) {
-                System.out.println("Task submission rejected: Executor is not active.");
-                break;   
-            }
+    public void start() {
+        while (!workerExecutor.isShutdown()) {
             lock.lock();
-            try{
-                while(jobQueue.isEmpty()){
-                    newTaskAdded.await();
+            try {
+                while (jobQueue.isEmpty()) {
+                    newTaskAdded.await();  // Wait until a new task is added
                 }
-                while (!jobQueue.isEmpty()){
-                    timeToSleep = jobQueue.peek().getScheduledTime() - System.currentTimeMillis();
-                    if(timeToSleep <= 0){
-                        break;
-                    }
+    
+                long timeToSleep = jobQueue.peek().getScheduledTime() - System.currentTimeMillis();
+    
+                // If there's time left before execution, wait until it's time to run the job
+                if (timeToSleep > 0) {
                     newTaskAdded.await(timeToSleep, TimeUnit.MILLISECONDS);
-                }     
-                ScheduledJob scheduledJob=jobQueue.poll();  
-                System.out.println(scheduledJob);
-                long newScheduledTime = 0;
+                    continue;  // Check queue again after waking up
+                }    
+            }catch(Exception e){
+            } 
+            finally {
+                lock.unlock();
+            }
+            ScheduledJob scheduledJob = jobQueue.poll();
+            if (scheduledJob == null) {
+                continue;
+            }
+            // Execute job outside of the lock
+            try {
                 switch (scheduledJob.getTaskType()) {
-                    case 0:
+                    case 0: // One-time execution
                         workerExecutor.submit(scheduledJob.getRunnable());
-                        break;                        
-                    case 1:
-                        newScheduledTime=System.currentTimeMillis()+scheduledJob.getPeriod();
-                        if (!workerExecutor.isShutdown() && !workerExecutor.isTerminated()) {
-                            workerExecutor.submit(scheduledJob.getRunnable());
-                        } else {
-                            System.out.println("Task submission rejected: Executor is not active.");
-                        }
-                        scheduledJob.setScheduledTime(newScheduledTime);
-                        jobQueue.add(scheduledJob);
-                        newTaskAdded.signalAll();
                         break;
-                    case 2:
-                        if (!workerExecutor.isShutdown() && !workerExecutor.isTerminated()) {
-                            Future<?> future = workerExecutor.submit(scheduledJob.getRunnable());
-                            future.get(); // will wait for the finish of this task
-                            newScheduledTime = System.currentTimeMillis()+ scheduledJob.getDelay();
-                            scheduledJob.setScheduledTime(newScheduledTime);
+    
+                    case 1: // Fixed rate execution
+                        long newScheduledTime = System.currentTimeMillis() + scheduledJob.getPeriod();
+                        workerExecutor.submit(scheduledJob.getRunnable());
+                        scheduledJob.setScheduledTime(newScheduledTime);
+    
+                        lock.lock();
+                        try {
                             jobQueue.add(scheduledJob);
-                            newTaskAdded.signalAll();       
-                        } 
-                        else {
-                            System.out.println("Task submission rejected: Executor is not active.");
+                            newTaskAdded.signal();
+                        } finally {
+                            lock.unlock();
                         }
-
-                        break;                 
+                        break;
+    
+                    case 2: // Fixed delay execution
+                        Future<?> future = workerExecutor.submit(scheduledJob.getRunnable());
+                        future.get(); // Wait for completion before scheduling next
+    
+                        newScheduledTime = System.currentTimeMillis() + scheduledJob.getDelay();
+                        scheduledJob.setScheduledTime(newScheduledTime);
+    
+                        lock.lock();
+                        try {
+                            jobQueue.add(scheduledJob);
+                            newTaskAdded.signal();
+                        } finally {
+                            lock.unlock();
+                        }
+                        break;
+    
                     default:
                         break;
-                }         
-            }catch (Exception e){
-                System.out.println("some thing wrong in start");
-                e.printStackTrace();
-            }finally{
-                lock.unlock();
+                }
+            } catch (Exception e) {
+                System.out.println("Exception while executing task: " + e.getMessage());
             }
         }
     }
+    
     public void scheduleAtFixedRate(Runnable command,long initialDelay,long period){
         lock.lock();
         try{
@@ -104,7 +112,6 @@ public class JobScheduler {
             lock.unlock();
         }
     }
-
     public void scheduleWithFixedDelay(Runnable command,long initialDelay,long delay){
         lock.lock();
         try{

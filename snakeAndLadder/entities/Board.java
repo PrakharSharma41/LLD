@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Board{
-    Cell[][]cells;
+    public Cell[][]cells;
     int boardSize;
     public Board(int size,int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions){
         boardSize=size;
