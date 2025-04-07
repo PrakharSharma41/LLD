@@ -1,0 +1,12 @@
+create custom thread pool:
+        ThreadPoolExecutor executor=new ThreadPoolExecutor(2,4,10,TimeUnit.MINUTES,
+        new ArrayBlockingQueue<>(2),new CustomThreadFactory(),new CustomRejectHandler());
+
+create by default thread pool:
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        private final ThreadPoolExecutor workerExecutor=(ThreadPoolExecutor)Executors.newFixedThreadPool(workerSize);
+
+
+create scheduled thread pool executor:
+        private final ScheduledExecutorService cleanupScheduler = Executors.newSingleThreadScheduledExecutor();
+        cleanupScheduler.scheduleAtFixedRate(this::cleanup, 1, 1, TimeUnit.MINUTES);
