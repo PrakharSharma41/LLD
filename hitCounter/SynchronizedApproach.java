@@ -1,5 +1,8 @@
 package hitCounter;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class SynchronizedApproach {
     private final int[] hits = new int[300];
     private final int[] timeStamp = new int[300];

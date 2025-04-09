@@ -1,3 +1,4 @@
+package singleton;
 public class SingleTonTest {
     private static volatile SingleTonTest test=null;
     private SingleTonTest(){
