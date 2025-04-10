@@ -40,10 +40,15 @@ public class BathRoomController {
         }catch(Exception e){}
     }
     public void start(){
-        scheduler.submit(()->{
+        new Thread(()->{
             while(true){
                 if(republican.size()==0&&democrats.size()==0){
-                    Thread.sleep(1000);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }                
                 User user = null;
                 UserType currentType = bathRoom.getBathroomStatus();
@@ -75,6 +80,6 @@ public class BathRoomController {
 
                 }
             }
-        });
+        }).start();;
     }
 }

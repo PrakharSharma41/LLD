@@ -1,6 +1,7 @@
 package rateLimiterType;
 
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -19,10 +20,12 @@ public class SlidingWindowRequestCounterImpl implements SlidingWindowRequestCoun
         String key=strategy.extract(request, groupBy);
         countMap.compute(key, (k,deque)->{
             if(deque==null){
-                deque = new ConcurrentLinkedDeque<>();
+                deque = new LinkedList<>();
             }
-            deque.addLast(request);
-            return deque;//If the function returns null, the key is removed from the map.
+            synchronized(deque){
+                deque.addLast(request);
+                return deque;//If the function returns null, the key is removed from the map.    
+            }
         });
     }
 

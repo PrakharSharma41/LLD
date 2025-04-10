@@ -1,4 +1,4 @@
-package webCrawler;
+package webCrawlerWithoutExecutor;
 
 public class URL {
     String url;

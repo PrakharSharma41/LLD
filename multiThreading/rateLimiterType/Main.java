@@ -7,19 +7,29 @@ public class Main {
         SlidingWindowRequestCounter counter = new SlidingWindowRequestCounterImpl(windowSize,strategy);
 
         long now = System.currentTimeMillis();
-        Request r1 = new ModifiedRequest(now, "192.168.1.1", "Chrome");
+        ModifiedRequest r1 = new ModifiedRequest(now, "192.168.1.1", "Chrome");
         Request r2 = new ModifiedRequest(now, "192.168.1.2", "Firefox");
 
-        counter.recordRequest(r1, GroupBy.IP);
-        counter.recordRequest(r2, GroupBy.IP);
-        counter.recordRequest(r1, GroupBy.BROWSER);
-        counter.recordRequest(r2, GroupBy.BROWSER);
 
-        System.out.println("Count for IP 192.168.1.1: " + counter.getRequestCount("192.168.1.1"));
-        System.out.println("Count for browser Chrome: " + counter.getRequestCount("Chrome"));
+        for(int i=0;i<5;i++){
+            new Thread(()->{
+                counter.recordRequest(r1, GroupBy.IP);
+                counter.recordRequest(r2, GroupBy.IP);
+                counter.recordRequest(r1, GroupBy.BROWSER);
+                counter.recordRequest(r2, GroupBy.BROWSER);        
+            }).start();            
+            try{
+                // Thread.sleep(1000);
+                System.out.println("Count for IP 192.168.1.1: " + counter.getRequestCount("192.168.1.1"));
+                System.out.println("Count for browser Chrome: " + counter.getRequestCount("Chrome"));        
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+
 
         try {
-            Thread.sleep(6000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -7,6 +7,7 @@ public class Main {
         BathRoomController bathRoomController=new BathRoomController(bathRoom);
 
         bathRoomController.addUser(new User(145, UserType.DEMOCRAT));
+        bathRoomController.addUser(new User(245, UserType.DEMOCRAT));
         bathRoomController.addUser(new User(20, UserType.REPUBLICAN));
         bathRoomController.addUser(new User(1245, UserType.DEMOCRAT));
         bathRoomController.addUser(new User(10, UserType.REPUBLICAN));
