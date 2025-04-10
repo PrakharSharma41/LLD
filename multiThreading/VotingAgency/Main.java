@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         BathRoom bathRoom=new BathRoom(3);
         // BathRoomController1 bathRoomController=new BathRoomController1(bathRoom);
-        BathRoomController bathRoomController=new BathRoomController(bathRoom);
+        BathRoomController2 bathRoomController=new BathRoomController2(bathRoom,5);
 
         bathRoomController.addUser(new User(145, UserType.DEMOCRAT));
         bathRoomController.addUser(new User(245, UserType.DEMOCRAT));
