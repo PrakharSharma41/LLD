@@ -1,0 +1,3 @@
+enum Party {
+    DEMOCRAT, REPUBLICAN
+}
