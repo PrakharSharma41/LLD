@@ -1,12 +1,16 @@
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 class Meeting{
     LocalDateTime startTime;
@@ -25,12 +29,12 @@ class Meeting{
 
 class MeetingRoom{
     String name;
-    private List<Meeting> bookedMeetings;
+    private TreeSet<Meeting> bookedMeetings;
     public MeetingRoom(String name) {
         this.name = name;
-        bookedMeetings=new ArrayList<>();
-        Deque<int[]>q=new LinkedList<>();
-        
+        bookedMeetings = new TreeSet<>(Comparator
+    .comparing(Meeting::getStartTime)
+    .thenComparing(Meeting::getEndTime));
     }
     @Override
     public String toString() {
@@ -47,11 +51,13 @@ class MeetingRoom{
         }finally{
 
         }
-    }    
+    }   
+    public void addMeeting(Meeting meeting){
+        bookedMeetings.add(meeting);
+    } 
     public List<int[]> getFreeSlots(LocalDateTime dayStart, LocalDateTime dayEnd) {
         List<int[]> freeSlots = new ArrayList<>();
         LocalDateTime currentStart = dayStart;
-
         for (Meeting meeting : bookedMeetings) {
             if (currentStart.isBefore(meeting.getStartTime())) {
                 freeSlots.add(new int[]{(int) currentStart.getHour(), (int) meeting.getStartTime().getHour()});
@@ -69,8 +75,6 @@ class MeetingScheduler{
     List<MeetingRoom>rooms;
     public MeetingScheduler(List<MeetingRoom> rooms) {
         this.rooms = rooms;
-        TreeMap<Integer,Integer>mp=new TreeMap<>();
-        
     }
     MeetingRoom findRoom(LocalDateTime startTime,LocalDateTime endTime){
         MeetingRoom bestRoom = null;
@@ -110,6 +114,35 @@ public class MeetingSchedulerSingleFile {
         List<MeetingRoom>rooms=new ArrayList<>(Arrays.asList(new MeetingRoom("room1"),new MeetingRoom("room2"),
         new MeetingRoom("room3")));
         MeetingScheduler meetingScheduler=new MeetingScheduler(rooms);
-        System.out.println(meetingScheduler.findRoom(LocalDateTime.of(2025, 2, 10, 10, 0), LocalDateTime.of(2025, 2, 10, 11, 0)));
+        LocalDateTime start=LocalDateTime.of(2025, 2, 10, 10, 0);
+        LocalDateTime end=LocalDateTime.of(2025, 2, 10, 11, 0);
+        MeetingRoom room=meetingScheduler.findRoom( start,end);
+        System.out.println();
+        if (room != null){
+            room.addMeeting(new Meeting(start, end));
+            System.out.println("room booked"+room);
+        }
+        start=LocalDateTime.of(2025, 2, 10, 10, 0);
+        end=LocalDateTime.of(2025, 2, 10, 11, 0);
+        room=meetingScheduler.findRoom( start,end);
+        if (room != null){
+            room.addMeeting(new Meeting(start, end));
+            System.out.println("room booked"+room);
+        }
+        start=LocalDateTime.of(2025, 2, 10, 10, 0);
+        end=LocalDateTime.of(2025, 2, 10, 11, 0);
+        room=meetingScheduler.findRoom( start,end);
+        if (room != null){
+            room.addMeeting(new Meeting(start, end));
+            System.out.println("room booked "+room);
+        }
+        start=LocalDateTime.of(2025, 2, 10, 10, 0);
+        end=LocalDateTime.of(2025, 2, 10, 11, 0);
+        room=meetingScheduler.findRoom( start,end);
+        if (room == null){
+            // room.addMeeting(new Meeting(start, end));
+            System.out.println("room not booked ");
+        }
+
     }
 }

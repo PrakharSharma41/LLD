@@ -19,7 +19,7 @@ public class RatelimiterApplication {
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         try{
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		}catch(Exception e){
 
 		}

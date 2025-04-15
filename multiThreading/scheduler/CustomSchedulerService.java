@@ -14,7 +14,7 @@ public class CustomSchedulerService {
     private final Lock lock = new ReentrantLock();
     private final Condition newTaskAdded = lock.newCondition();
     private final ThreadPoolExecutor workerExecutor ;
-
+    private volatile boolean isRunning = true;
     public CustomSchedulerService(int workerThreadSize) {
         this.taskQueue = new PriorityQueue<>(Comparator.comparingLong(ScheduledTask::getScheduledTime));
         workerExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(workerThreadSize);
@@ -24,7 +24,7 @@ public class CustomSchedulerService {
         
         new Thread(()->{
             long timeToSleep =0;
-            while (true){
+            while (isRunning){
                 lock.lock();
                 try{
                     while(taskQueue.isEmpty()){
