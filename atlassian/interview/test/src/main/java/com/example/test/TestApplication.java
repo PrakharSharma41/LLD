@@ -3,10 +3,6 @@ package atlassian.interview.test.src.main.java.com.example.test;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class TestApplication {
 
 	public static void main(String[] args) {

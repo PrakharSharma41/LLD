@@ -21,6 +21,7 @@ public class NodeManager {
             String input=inputs.get(i);
             List<String>parent=new ArrayList<>();
             boolean parentFound=listParents(root,input,parent);
+            System.out.println(input+" parents are"+parent);
             if(parentFound==false){
                 inputPresent=false;break;
             }
@@ -34,14 +35,21 @@ public class NodeManager {
         int index=0;
         String closestParent="";
         while(index<minParentSize){
+            String commonParent="";
+            boolean common=true;
             for(int parentIndex=0;parentIndex<parents.size()-1;parentIndex++){
                 String parent1=parents.get(parentIndex).get(index);
                 String parent2=parents.get(parentIndex+1).get(index);
                 if(parent1.equals(parent2)){
-                    closestParent=parent1;
+                    commonParent=parent1;
                 }else{
-                    break;
+                    common=false;break;
                 }
+            }
+            if(common){
+                closestParent=commonParent;
+            }else{
+                break;
             }
             index++;
         }
