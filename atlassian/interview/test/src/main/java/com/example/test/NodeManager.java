@@ -2,6 +2,7 @@ package atlassian.interview.test.src.main.java.com.example.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class NodeManager {
     Node root;
@@ -10,7 +11,8 @@ public class NodeManager {
     }
 
     public String findClosestParent(List<String>inputs){
-
+        TreeMap<Integer,Integer>mp=new TreeMap<>();
+        mp.fl
         if(inputs==null ||inputs.size()==0|| root==null){
             return "";
         }
