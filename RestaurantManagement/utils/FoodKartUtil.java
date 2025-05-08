@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import DesignPatterns.iteratorDesign.Iterator;
 import RestaurantManagement.model.Restaurant;
 import RestaurantManagement.model.User;
-import iteratorDesign.Iterator;
 
 public class FoodKartUtil {
     public static List<Restaurant> getMatchingRestaurant(List<Restaurant> listOfRestaurants, User currentUser) {
