@@ -12,25 +12,23 @@ public class Board{
         addSnakeAndLadderToBoard(numberOfSnakes, snakesPositions, numberOfLadders, laddersPositions);
     }
     private void addSnakeAndLadderToBoard(int numberOfSnakes,int[][]snakesPositions, int numberOfLadders,int[][]laddersPositions) {
-        while(numberOfSnakes>0){
-            int snakeStart=(int)(Math.random()*(cells.length*cells.length));
-            int snakeEnd=(int)(Math.random()*(cells.length*cells.length));            
-            // int snakeStart=ThreadLocalRandom.current().nextInt(1,cells.length*cells.length-1);
-            if(snakeEnd>snakeStart)continue;
-            Jump snakeHead=new Jump(snakeStart,snakeEnd);
-            Cell cells=getCell(snakeStart);
-            cells.jump=snakeHead;
-            numberOfSnakes--;
+        if(snakesPositions!=null&&numberOfSnakes>0){
+            for(int i=0;i<snakesPositions.length;i++){
+                int snakeStart=snakesPositions[i][0];
+                int snakeEnd=snakesPositions[i][1];
+                Jump snake=new Jump(snakeStart,snakeEnd);
+                Cell cells=getCell(snakeStart);
+                cells.jump=snake;    
+            }
         }
-        while(numberOfLadders>0){
-            int ladderStart=(int)(Math.random()*(cells.length*cells.length));
-            int ladderEnd=(int)(Math.random()*(cells.length*cells.length));            
-            // int snakeStart=ThreadLocalRandom.current().nextInt(1,cells.length*cells.length-1);
-            if(ladderStart>ladderEnd)continue;
-            Jump snakeHead=new Jump(ladderStart,ladderEnd);
-            Cell cells=getCell(ladderStart);
-            cells.jump=snakeHead;
-            numberOfLadders--;
+        if(laddersPositions!=null&&numberOfLadders>0){
+            for(int i=0;i<laddersPositions.length;i++){
+                int ladderStart=laddersPositions[i][0];
+                int ladderEnd=laddersPositions[i][1];            
+                Jump ladderHead=new Jump(ladderStart,ladderEnd);
+                Cell cells=getCell(ladderStart);
+                cells.jump=ladderHead;
+            }
         }
     }
     private void createBoard(int size){
@@ -42,9 +40,14 @@ public class Board{
         }        
     }
     public Cell getCell(int position){
-        int row=position/cells.length;
-        int column=position%cells.length;
-        return cells[row][column];
+        int size = cells.length;
+        int row = position / size;
+        int col = position % size;
+        if (row >= size || col >= size) return null;
+        return cells[row][col];
+    }
+    public int getBoardSize(){
+        return boardSize*boardSize;
     }
 }
 

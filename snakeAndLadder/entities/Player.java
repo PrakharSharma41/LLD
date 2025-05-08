@@ -6,5 +6,9 @@ public class Player {
         this.name = name;
         this.currentPosition = currentPosition;
     }
+    @Override
+    public String toString() {
+        return "Player [name=" + name + ", currentPosition=" + currentPosition + "]";
+    }
     
 }
