@@ -1,0 +1,17 @@
+When object creation is costly (e.g., network/database operations, expensive computations).
+
+When an object has numerous configuration options, and it's easier to duplicate an existing configured object.
+
+To avoid building a hierarchy of factories for different object configurations.
+
+
+
+Structure
+1. Prototype Interface
+Declares the clone() method.
+
+2. Concrete Prototype
+Implements the clone() method.
+
+3. Client
+Uses the clone() method to create a new object.

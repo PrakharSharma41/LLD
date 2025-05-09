@@ -7,3 +7,6 @@ now to add a feature we wrap that object in a decorator(also an object)
 it prevents class explosion
 
 design coffee making machine, pizza making machine
+
+
+Add responsibilities without altering existing code.
