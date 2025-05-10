@@ -6,10 +6,10 @@ public class File implements FileSystemAttributes{
     public File(int fileSize,String name){
         this.fileSize=fileSize;this.name=name;
     }
-    public int getFileSize() {
+    public int getSize() {
         return fileSize;
     }
-    public void setFileSize(int fileSize) {
+    public void setSize(int fileSize) {
         this.fileSize = fileSize;
     }
     public String getName() {

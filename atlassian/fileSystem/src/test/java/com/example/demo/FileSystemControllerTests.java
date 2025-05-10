@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 
 import com.example.demo.entities.Collection;
+import com.example.demo.entities.FileSystemAttributes;
 
 public class FileSystemControllerTests {
 
@@ -56,7 +57,7 @@ public class FileSystemControllerTests {
         fileSystemController.addFile("nullfile.txt", 50, null);
 
         assertEquals(50, fileSystemController.getTotalCollectionSize());
-        assertTrue(fileSystemController.collectionNameMap.isEmpty());
+        assertTrue(fileSystemController.nameMap.isEmpty());
         assertTrue(fileSystemController.collectionsSet.isEmpty());
     }    
 
@@ -82,7 +83,7 @@ public class FileSystemControllerTests {
         fileSystemController.addFile("file6", 600, Collections.singletonList("Alpha"));      // Alpha: 2 files
 
         // Expected: Beta (3 files), Alpha (2 files)
-        List<Collection> top2 = fileSystemController.getTopKCollections(2);
+        List<FileSystemAttributes> top2 = fileSystemController.getTopKCollections1(2);
 
         assertEquals(2, top2.size());
         assertEquals("Beta", top2.get(0).getName());

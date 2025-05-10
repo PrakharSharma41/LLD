@@ -14,21 +14,22 @@ import java.util.stream.Collectors;
 
 import com.example.demo.entities.Collection;
 import com.example.demo.entities.File;
+import com.example.demo.entities.FileSystemAttributes;
 
 public class ThreadSafeControllerWithLock {
-    SortedSet<Collection> collectionsSet;
-    HashMap<String, Collection> collectionNameMap;
+    SortedSet<FileSystemAttributes> collectionsSet;
+    HashMap<String, FileSystemAttributes> nameMap;
     Map<String, Lock> collectionLocks;  // Lock for each collection
     AtomicInteger totalCollectionSize;
 
     ThreadSafeControllerWithLock() {
         totalCollectionSize = new AtomicInteger(0);
-        collectionsSet = new TreeSet<>((Collection a, Collection b) -> {
-            if (a.getTotalSize() != b.getTotalSize())
-                return b.getTotalSize() - a.getTotalSize();
+        collectionsSet=new TreeSet<>((FileSystemAttributes a,FileSystemAttributes b)->{
+            if(a.getSize()!=b.getSize())
+            return b.getSize()-a.getSize();
             return b.getName().compareTo(a.getName());
         });
-        collectionNameMap = new HashMap<>();
+        nameMap = new HashMap<>();
         collectionLocks = new HashMap<>(); // To store locks for each collection
     }
 
@@ -44,7 +45,7 @@ public class ThreadSafeControllerWithLock {
 
         for (String collectionName : collectionNames) {
             // Get or create the collection
-            Collection collection = collectionNameMap.computeIfAbsent(collectionName, name -> new Collection(name));
+            Collection collection = (Collection)nameMap.computeIfAbsent(collectionName, name -> new Collection(name));
 
             // Get the lock for the collection and acquire it
             Lock lock = getLockForCollection(collectionName);
@@ -60,27 +61,14 @@ public class ThreadSafeControllerWithLock {
             }
 
             // Put the collection in the map after modification
-            collectionNameMap.put(collectionName, collection);
+            nameMap.put(collectionName, collection);
         }
     }
 
-    public List<Collection> getTopKCollections(int k) {
-        return collectionNameMap.values().stream()
-            .sorted((a, b) -> {
-                int cmp = Integer.compare(b.getFiles().size(), a.getFiles().size());
-                if (cmp == 0) {
-                    return a.getName().compareTo(b.getName()); // optional: tie-breaker
-                }
-                return cmp;
-            })
-            .limit(k)
-            .collect(Collectors.toList());
-    }
-
-    public List<Collection> getTopKCollections1(int k) {
-        List<Collection> collections = new ArrayList<>();
+    public List<FileSystemAttributes> getTopKCollections1(int k) {
+        List<FileSystemAttributes> collections = new ArrayList<>();
         synchronized (collectionsSet) {
-            for (Collection collection : collectionsSet) {
+            for (FileSystemAttributes collection : collectionsSet) {
                 collections.add(collection);
                 if (collections.size() == k) break;
             }
@@ -92,7 +80,7 @@ public class ThreadSafeControllerWithLock {
         return totalCollectionSize.get();
     }
 
-    public Collection getCollection(String collectionName) {
-        return collectionNameMap.get(collectionName);
+    public FileSystemAttributes getCollection(String collectionName) {
+        return nameMap.get(collectionName);
     }
 }

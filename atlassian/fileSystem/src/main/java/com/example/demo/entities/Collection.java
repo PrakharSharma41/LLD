@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Collection implements FileSystemAttributes{
-    List<File>files;
+    List<FileSystemAttributes>files;
     int totalSize;
     String name;
     public Collection(String name) {
@@ -12,17 +12,17 @@ public class Collection implements FileSystemAttributes{
         totalSize=0;
         this.name=name;
     }
-    public void addFile(File file){
+    public void addFile(FileSystemAttributes file){
         files.add(file);
-        updateSize(totalSize+file.getFileSize());
+        setSize(totalSize+file.getSize());
     }
-    public void updateSize(int size){
+    public void setSize(int size){
         this.totalSize=size;
     }
-    public List<File> getFiles() {
+    public List<FileSystemAttributes> getFiles() {
         return files;
     }
-    public int getTotalSize() {
+    public int getSize() {
         return totalSize;
     }
     public String getName() {
