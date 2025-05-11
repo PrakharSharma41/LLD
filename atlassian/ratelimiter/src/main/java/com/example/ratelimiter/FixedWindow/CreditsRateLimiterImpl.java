@@ -22,9 +22,9 @@ public class CreditsRateLimiterImpl implements RateLimiter{
         if(window==null||currentTime-window.getTimeStamp()>windowSize){
             int leftoverCredits = 0;            
             if (window != null) {
-                int completeWindowsSkipped = (int)(currentTime-(windowSize+window.getTimeStamp()))/(int)windowSize;
-                completeWindowsSkipped =completeWindowsSkipped*maxRequests;
-    
+                long timeElapsed = currentTime - window.getTimeStamp();
+                int completeWindowsSkipped = (int)(timeElapsed / windowSize);
+
                 int unused = maxRequests - window.getCount();
                 leftoverCredits = Math.min(maxCredits, window.getCredits() + Math.max(0, unused)+completeWindowsSkipped);
             }

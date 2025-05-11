@@ -5,21 +5,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.ratelimiter.FixedWindow.CreditsFixedWindow;
 import com.example.ratelimiter.FixedWindow.CreditsRateLimiterImpl;
+import com.example.ratelimiter.FixedWindow.CreditsRateLimiterThreadSafeImpl;
 import com.example.ratelimiter.FixedWindow.FixedWindow;
 import com.example.ratelimiter.SlidingWindow.NormalRateLimiterImpl;
+import com.example.ratelimiter.SlidingWindow.SlidingWindowRateLimiterImpl;
 
 @SpringBootApplication
 public class RatelimiterApplication {
 
 	public static void main(String[] args) {
 
-		RateLimiter rateLimiter=new CreditsRateLimiterImpl(1000L,5,3);
-        System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
-        System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
+		RateLimiter rateLimiter=new SlidingWindowRateLimiterImpl(2000L,3,3);
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         try{
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		}catch(Exception e){
 
 		}
@@ -30,6 +30,9 @@ public class RatelimiterApplication {
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
         System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
+
+        // System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
+        // System.out.println("Sent to API Gateway Server? " + (rateLimiter.rateLimit("1234") ? "Yes" : "No"));
 	}
 
 }

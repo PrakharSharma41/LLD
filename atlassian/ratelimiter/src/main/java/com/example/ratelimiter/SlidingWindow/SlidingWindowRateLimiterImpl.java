@@ -32,16 +32,19 @@ public class SlidingWindowRateLimiterImpl implements RateLimiter{
         while (!timestamps.isEmpty() && currentTime - timestamps.peekFirst() > windowSize) {
             timestamps.pollFirst();
         }
-        
+
+        if (window.getLastCreditUpdate() + windowSize <= currentTime) {
+            // Calculate unused slots to possibly convert to credits
+            int unusedSlots = maxRequests - timestamps.size();
+            int skippedWindowCredits=(int)((currentTime-window.getLastCreditUpdate())/windowSize*maxRequests);
+            int newCredits = Math.min(maxCredits, window.getCredits() + unusedSlots+skippedWindowCredits);
+            window.setCredits(newCredits);
+            window.setLastCreditUpdate(currentTime); // Set last credit update time
+        }
+
         int currentCount = timestamps.size();
         if (currentCount < maxRequests) {
             timestamps.add(currentTime);
-
-            // Calculate unused slots to possibly convert to credits
-            int unused = maxRequests - currentCount;
-            int newCredits = Math.min(maxCredits, window.getCredits() + unused);
-            window.setCredits(newCredits);
-
             return true;
         }
 

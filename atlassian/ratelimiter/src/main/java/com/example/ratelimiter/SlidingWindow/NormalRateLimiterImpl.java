@@ -3,12 +3,14 @@ package com.example.ratelimiter.SlidingWindow;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.example.ratelimiter.RateLimiter;
 
 public class NormalRateLimiterImpl implements RateLimiter{
 
-    HashMap<String,SlidingWindow>userMap;
+    Map<String,SlidingWindow>userMap;
     long windowSize;
     int maxRequests;
 
