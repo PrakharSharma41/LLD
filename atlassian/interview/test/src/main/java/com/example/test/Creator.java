@@ -1,15 +1,14 @@
-package atlassian.interview.test.src.main.java.com.example.test;
 
 public class Creator {
     public Node create(){
 		Node root=new Node("company");
 
-        Node hr=new Node("HR");
+        Node hr=new Node("hr");
 		Node mona=new Node("mona");
 		Node springs=new Node("springs");
         hr.setChildren(new Node[]{mona,springs});
 
-        Node engg=new Node("Engg");
+        Node engg=new Node("engg");
 
         
 		Node be=new Node("be");

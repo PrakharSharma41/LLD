@@ -1,100 +1,57 @@
-package atlassian.interview.test.src.main.java.com.example.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
 public class NodeManager {
     Node root;
+    HashMap<String,List<Node>>paths;
     NodeManager(Node root){
         this.root=root;
+        paths=new HashMap<>();
+        createParents(root,new ArrayList<>());
     }
 
     public String findClosestParent(List<String>inputs){
-        TreeMap<Integer,Integer>mp=new TreeMap<>();
-        mp.fl
         if(inputs==null ||inputs.size()==0|| root==null){
             return "";
         }
-        List<List<String>>parents=new ArrayList<>();
-        int n=inputs.size(),minParentSize=Integer.MAX_VALUE;
-        boolean inputPresent=true;
-        for(int i=0;i<inputs.size();i++){
-            String input=inputs.get(i);
-            List<String>parent=new ArrayList<>();
-            boolean parentFound=listParents(root,input,parent);
-            System.out.println(input+" parents are"+parent);
-            if(parentFound==false){
-                inputPresent=false;break;
+        List<List<Node>>parentPaths=new ArrayList<>();
+        int minLength=Integer.MAX_VALUE;
+        for(String input: inputs){
+            List<Node> path = paths.get(input);
+            if (path == null) {
+                return "no common parent";
             }
-            minParentSize=Math.min(minParentSize,parent.size());
-            parents.add(parent);
+            parentPaths.add(path);
+            minLength = Math.min(minLength, path.size());
         }
-        if(inputPresent==false){
-            return "no common parent";
-        }
-
-        int index=0;
         String closestParent="";
-        while(index<minParentSize){
-            String commonParent="";
-            boolean common=true;
-            for(int parentIndex=0;parentIndex<parents.size()-1;parentIndex++){
-                String parent1=parents.get(parentIndex).get(index);
-                String parent2=parents.get(parentIndex+1).get(index);
-                if(parent1.equals(parent2)){
-                    commonParent=parent1;
-                }else{
-                    common=false;break;
-                }
+        for(int i=0;i<minLength;i++){
+            String current = parentPaths.get(0).get(i).value;
+            boolean allMatch=true;
+            for(int j=1;j<parentPaths.size();j++){
+                if (!current.equals(parentPaths.get(j).get(i).value)) {
+                    allMatch = false;
+                    break;
+                }                
             }
-            if(common){
-                closestParent=commonParent;
-            }else{
-                break;
-            }
-            index++;
+            if(allMatch)closestParent=current;
+            else break;
         }
         return closestParent;   
     }
-    // company engg be
-    // true or false if input is found
-    public boolean listParents(Node root,String input,List<String>parents){
-
-        if(root.getValue().equals(input)){
-            return true;
+    public void createParents(Node head,List<Node>path){
+        if(head==null)return ;
+        path.add(head);
+        paths.put(head.value, new ArrayList<>(path));
+        if(head.children!=null){
+            for(Node node: head.children){
+                createParents(node, path);
+            }    
         }
-        if(root.getChildren()==null){
-            return false;
-        }
-
-        parents.add(root.getValue());
-        boolean inputFound=false;
-        for(Node children: root.getChildren()){
-            boolean found=listParents(children, input, parents);
-            if(found==true){
-                inputFound=true;break;
-            }
-        }
-        if(inputFound==false){
-            parents.remove(parents.size()-1);
-        }
-        return inputFound;
+        path.remove(path.size()-1);
     }
 }
-// class Node{
-// 	String value
-// 	Node[] children
-// }
-
-// mona,alice,lisa
-
-// ans company
-
-// i=0
-// parentIndex 0  company,hr
-// parentIndex 1  company,engg,be
-// parentIndex 2  company,,engg,fe
-
-//parents
-// parent: company,hr

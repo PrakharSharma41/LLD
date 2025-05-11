@@ -1,4 +1,3 @@
-package atlassian.interview.test.src.main.java.com.example.test;
 
 public class Node {
     String value;
@@ -17,6 +16,10 @@ public class Node {
     }
     public void setChildren(Node[] children) {
         this.children = children;
+    }
+    @Override
+    public String toString() {
+        return "Node [value=" + value + "]";
     }    
     
 }
