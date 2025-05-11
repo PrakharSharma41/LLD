@@ -10,7 +10,6 @@ import java.util.TreeSet;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import com.example.demo.entities.Collection;
 import com.example.demo.entities.File;
@@ -24,11 +23,10 @@ public class ThreadSafeControllerWithLock {
 
     ThreadSafeControllerWithLock() {
         totalCollectionSize = new AtomicInteger(0);
-        collectionsSet=new TreeSet<>((FileSystemAttributes a,FileSystemAttributes b)->{
-            if(a.getSize()!=b.getSize())
-            return b.getSize()-a.getSize();
+        collectionsSet = Collections.synchronizedSortedSet(new TreeSet<>((FileSystemAttributes a, FileSystemAttributes b) -> {
+            if (a.getSize() != b.getSize()) return b.getSize() - a.getSize();
             return b.getName().compareTo(a.getName());
-        });
+        }));
         nameMap = new HashMap<>();
         collectionLocks = new HashMap<>(); // To store locks for each collection
     }
@@ -67,6 +65,7 @@ public class ThreadSafeControllerWithLock {
 
     public List<FileSystemAttributes> getTopKCollections1(int k) {
         List<FileSystemAttributes> collections = new ArrayList<>();
+        // Synchronize the access to the sorted set to avoid issues when modifying
         synchronized (collectionsSet) {
             for (FileSystemAttributes collection : collectionsSet) {
                 collections.add(collection);

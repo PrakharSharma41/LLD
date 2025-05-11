@@ -12,7 +12,6 @@ import com.example.demo.entities.FileSystemAttributes;
 
 @SpringBootApplication
 public class DemoApplication {
-
         public static void main(String[] args) {
                 FileSystemController fileSystem=new FileSystemController();
                 fileSystem.addFile("f1", 100, Arrays.asList("c1","c2","c3"));

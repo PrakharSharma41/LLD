@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import com.example.demo.entities.Collection;
@@ -12,29 +14,31 @@ import com.example.demo.entities.File;
 import com.example.demo.entities.FileSystemAttributes;
 
 public class ThreadSafeController {
-    int totalCollectionSize=0;
+    AtomicInteger totalCollectionSize;
     TreeSet<FileSystemAttributes>collectionsSet;
-    HashMap<String,FileSystemAttributes>nameMap;
+    ConcurrentHashMap<String,FileSystemAttributes>nameMap;
     ThreadSafeController(){
-        this.totalCollectionSize=0;
+        totalCollectionSize = new AtomicInteger(0);
         collectionsSet=new TreeSet<>((FileSystemAttributes a,FileSystemAttributes b)->{
             if(a.getSize()!=b.getSize())
             return b.getSize()-a.getSize();
             return b.getName().compareTo(a.getName());
         });
-        nameMap=new HashMap<>();
+        nameMap=new ConcurrentHashMap<>();
     }
-    public synchronized void addFile(String fileName,int fileSize,List<String>collectionNames){
-        totalCollectionSize+=fileSize;
+    public void addFile(String fileName,int fileSize,List<String>collectionNames){
+        totalCollectionSize.addAndGet(fileSize);
         File file=new File(fileSize, fileName);
         if(collectionNames==null || collectionNames.size()==0)return ;
         for(String collectionName:collectionNames){
             Collection collection=(Collection)nameMap.getOrDefault(collectionName, new Collection(collectionName));
-            if(collectionsSet.contains(collection)){
-                collectionsSet.remove(collection);
+            synchronized(collectionsSet){
+                if(collectionsSet.contains(collection)){
+                    collectionsSet.remove(collection);
+                }
+                collection.addFile(file);
+                collectionsSet.add(collection);    
             }
-            collection.addFile(file);
-            collectionsSet.add(collection);
             nameMap.put(collectionName, collection);
         }
     }
@@ -49,8 +53,8 @@ public class ThreadSafeController {
         }
     }  
 
-    public int getTotalCollectionSize(){
-        return totalCollectionSize;
+    public synchronized int getTotalCollectionSize(){
+        return totalCollectionSize.get();
     }
     public FileSystemAttributes getCollection(String collectionName){
         return nameMap.get(collectionName);
