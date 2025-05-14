@@ -27,7 +27,7 @@ Result: This significantly reduced false positives and improved triaging accurac
 Q: Tell me about a time you took ownership of a problem others ignored.
 Answer:
 
-Situation: In Panacea, our log analysis tool processed all levels of logs (info, warning, fatal), leading to long report generation times and false positives.
+Situation: In our internal tool, our log analysis tool processed all levels of logs (info, warning, fatal), leading to long report generation times and false positives.
 
 Task: I aimed to optimize the log parsing process to prioritize critical information and reduce noise.
 
@@ -128,7 +128,7 @@ Q: Tell me about a time you had a disagreement about a technical approach.
 
 Answer:
 
-Situation: In Panacea, there was conflict over whether to download logs (more fault-tolerant) or mount them (faster but less reliable).
+Situation: In our internal tool, there was conflict over whether to download logs (more fault-tolerant) or mount them (faster but less reliable).
 
 Task: We had to choose an optimal method without compromising on either reliability or performance.
 
@@ -141,7 +141,7 @@ Q: Describe a high-impact project you delivered.
 
 Answer:
 
-Situation: The Panacea report generation process took 30+ minutes, delaying insights during critical incidents.
+Situation: The our internal tool report generation process took 30+ minutes, delaying insights during critical incidents.
 
 Task: Reduce the time taken without losing key data.
 
