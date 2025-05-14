@@ -17,20 +17,18 @@ public class Snake {
         snake.add(start);
     }
     public boolean move(Point newHead,boolean grow){
+        Point tail;
+        if(!grow){
+            tail=snake.removeLast();
+            bodySet.remove(tail.getX()+"_"+tail.getY());
+        }
         String headKey=newHead.getX()+"_"+newHead.getY();
 
-        Point tail=snake.removeLast();
-        bodySet.remove(tail.getX()+"_"+tail.getY());
         if(bodySet.contains(headKey)){
             return false;
         }
         snake.addFirst(newHead);
         bodySet.add(headKey);
-        if(grow){
-            snake.addLast(tail);
-            bodySet.add(tail.getX()+"_"+tail.getY());
-        }
-
         return true;
     }
     public Point getHead(){

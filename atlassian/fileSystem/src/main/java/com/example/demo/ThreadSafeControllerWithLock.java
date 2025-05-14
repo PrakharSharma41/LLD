@@ -9,6 +9,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.example.demo.entities.Collection;
@@ -17,7 +18,7 @@ import com.example.demo.entities.FileSystemAttributes;
 
 public class ThreadSafeControllerWithLock {
     SortedSet<FileSystemAttributes> collectionsSet;
-    HashMap<String, FileSystemAttributes> nameMap;
+    Map<String, FileSystemAttributes> nameMap;
     Map<String, Lock> collectionLocks;  // Lock for each collection
     AtomicInteger totalCollectionSize;
 
@@ -27,8 +28,8 @@ public class ThreadSafeControllerWithLock {
             if (a.getSize() != b.getSize()) return b.getSize() - a.getSize();
             return b.getName().compareTo(a.getName());
         }));
-        nameMap = new HashMap<>();
-        collectionLocks = new HashMap<>(); // To store locks for each collection
+        nameMap = new ConcurrentHashMap<>();
+        collectionLocks = new ConcurrentHashMap<>(); // To store locks for each collection
     }
 
     private Lock getLockForCollection(String collectionName) {

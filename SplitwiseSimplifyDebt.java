@@ -27,7 +27,7 @@ public class SplitwiseSimplifyDebt {
             int nextVal=balanceList.get(i);
             if(balanceList.get(currentIndex)*balanceList.get(i)<0){
                 balanceList.set(i, balanceList.get(i)+balanceList.get(currentIndex));
-                minTransactions=Math.min(minTransactions+1,dfs(balanceList,currentIndex+1));
+                minTransactions=Math.min(minTransactions,1+dfs(balanceList,currentIndex+1));
                 balanceList.set(i, nextVal);
                 if(nextVal+balanceList.get(currentIndex)==0)break;           
             }
@@ -35,5 +35,6 @@ public class SplitwiseSimplifyDebt {
         return minTransactions;
     }
 }
+
 // I was asked this in Amazon interview in 2022. I solved it using min heap and max heap. Min heap will have all -ve transactions(essentially max heap with highest negative money) and max heap to all +ve transactions. 
 //In each iteration, I pop top entries from both the heaps and then reduced the lower one to zero and other one will be again pushed in the heap after subtraction. I cleared that round.
