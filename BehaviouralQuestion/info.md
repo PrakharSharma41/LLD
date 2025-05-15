@@ -20,36 +20,36 @@
 Q: Give an example of a time you proposed a new idea or process. What was the response?
 Answer:
 1. 
-Situation: As a part of the central team, we often received tickets that didn’t belong to us because reporters randomly assigned issues without proper triage.
+**Situation:** As a part of the central team, we often received tickets that didn’t belong to us because reporters randomly assigned issues without proper triage.
 
-Task: This created noise and unnecessary workload. I wanted to reduce these false positives and ensure correct ownership from the start.
+**Task:** This created noise and unnecessary workload. I wanted to reduce these false positives and ensure correct ownership from the start.
 
-Action: I proactively discussed this problem with my manager and designed a standardized procedure with clear documentation. It guided reporters to identify the appropriate team before assigning tickets.
+**Action:** I proactively discussed this problem with my manager and designed a standardized procedure with clear documentation. It guided reporters to identify the appropriate team before assigning tickets.
 
-Result: This significantly reduced false positives and improved triaging accuracy, saving time and increasing team productivity.
+**Result:** This significantly reduced false positives and improved triaging accuracy, saving time and increasing team productivity.
 
 2. 
 
-Situation: Internal tool has to be run by developers manually and wait for its result to come
+**Situation:** Internal tool has to be run by developers manually and wait for its result to come
 
-Task: Running our internal analysis tool by default as soon as a ticket is raised, provide analysis and 
+**Task:** Running our internal analysis tool by default as soon as a ticket is raised, provide analysis and 
 update in ticket itself.
 
-Action: I automated the entire flow of sending and new ticket to our channel, it is intercepted by my script and trigger internal tool asynchronously for any number of tickets and update the ticket
+**Action:** I automated the entire flow of sending and new ticket to our channel, it is intercepted by my script and trigger internal tool asynchronously for any number of tickets and update the ticket
 
-Result: This reduced the manual procedure to update the flow.
+**Result:** This reduced the manual procedure to update the flow.
 
 3. 
-Situation:
+**Situation:**
 Our internal log analysis tool was generating many false positives when matching known issues from logs, which led to wasted debugging effort and delayed root cause identification.
 
-Task:
+**Task:**
 We needed to significantly improve the tool’s accuracy so teams wouldn't chase already resolved or irrelevant issues.
 
-Action:
+**Action:**
 I investigated the false positives and analyzed the recently added rules. I discovered that many patterns were too generic or incorrectly written due to user negligence. I built a parser to help users write better rules by suggesting improvements. Additionally, I enhanced the rule engine to support filtering based on log level and source log file name, adding more context to each match.
 
-Result:
+**Result:**
 These changes reduced false positives by 40%, improved detection accuracy, and made the triage process significantly more reliable.
 
 ---
@@ -58,13 +58,13 @@ These changes reduced false positives by 40%, improved detection accuracy, and m
 Q: Tell me about a time you took ownership of a problem others ignored.
 Answer:
 
-Situation: In our internal tool, our log analysis tool processed all levels of logs (info, warning, fatal), leading to long report generation times and false positives.
+**Situation:** In our internal tool, our log analysis tool processed all levels of logs (info, warning, fatal), leading to long report generation times and false positives.
 
-Task: I aimed to optimize the log parsing process to prioritize critical information and reduce noise.
+**Task:** I aimed to optimize the log parsing process to prioritize critical information and reduce noise.
 
-Action: I proposed a prioritized approach where we parse warning and fatal logs first and defer info logs unless relevant. I collaborated with the team to implement this logic.
+**Action:** I proposed a prioritized approach where we parse warning and fatal logs first and defer info logs unless relevant. I collaborated with the team to implement this logic.
 
-Result: We achieved a 50% reduction in report generation time and significantly improved the quality of insights by focusing on what mattered most.
+**Result:** We achieved a 50% reduction in report generation time and significantly improved the quality of insights by focusing on what mattered most.
 
 ---
 
@@ -74,13 +74,13 @@ Q: Tell me about a time when you have worked against tight deadlines and didn't 
 Answer:
 
 1. 
-Situation:
+**Situation:**
 At Nutanix, we faced a production issue where a key service was intermittently crashing, affecting customer access. It was early morning, and we had less than 30 minutes before peak business hours.
 
-Task:
+**Task:**
 I had to act quickly to stabilize the service without waiting for a full root cause analysis — the priority was to avoid business-hour impact and customer escalations.
 
-Action:
+**Action:**
 I immediately scanned heap dumps and JVM GC logs. I noticed full GCs were not freeing up memory — a clear sign of a memory leak. With little time to experiment, I made two quick decisions:
 
 Increased the JVM heap as a temporary buffer.
@@ -89,17 +89,17 @@ Disabled a newly released feature that was showing correlation with the memory i
 
 I chose these based on recent deployment history and memory metrics — even though I didn’t have conclusive proof yet, it was the safest risk-balanced path.
 
-Result:
+**Result:**
 The service stabilized within 30 minutes and customer impact was avoided. After that, I worked with the owning team to: Trace the leak to a flaw in cache eviction logic.
 
 2. 
-Situation: During a company hackathon, we aimed to automate the ticket update flow, but we didn’t have complete data around all Jira ticket transition conditions.
+**Situation:** During a company hackathon, we aimed to automate the ticket update flow, but we didn’t have complete data around all Jira ticket transition conditions.
 
-Task: Despite the uncertainty, we wanted to deliver an MVP that could handle the most common flows.
+**Task:** Despite the uncertainty, we wanted to deliver an MVP that could handle the most common flows.
 
-Action: I analyzed ticket patterns from existing logs, inferred the key transitions, and led the team in building a working end-to-end solution.
+**Action:** I analyzed ticket patterns from existing logs, inferred the key transitions, and led the team in building a working end-to-end solution.
 
-Result: The prototype worked well in most cases and was awarded Category Winner, validating our hypothesis and speeding up ticket updates by 30%.
+**Result:** The prototype worked well in most cases and was awarded Category Winner, validating our hypothesis and speeding up ticket updates by 30%.
 
 ---
 
@@ -108,16 +108,16 @@ Q: Describe a problem you solved by digging into the data.
 
 Answer:
 
-Situation:
+**Situation:**
 Our internal log analysis tool was generating many false positives when matching known issues from logs, which led to wasted debugging effort and delayed root cause identification.
 
-Task:
+**Task:**
 We needed to significantly improve the tool’s accuracy so teams wouldn't chase already resolved or irrelevant issues.
 
-Action:
+**Action:**
 I investigated the false positives and analyzed the recently added rules. I discovered that many patterns were too generic or incorrectly written due to user negligence. I built a parser to help users write better rules by suggesting improvements. Additionally, I enhanced the rule engine to support filtering based on log level and source log file name, adding more context to each match.
 
-Result:
+**Result:**
 These changes reduced false positives by 40%, improved detection accuracy, and made the triage process significantly more reliable.
 
 ---
@@ -127,26 +127,26 @@ Q: Tell me about something new you learned to solve a problem.
 
 Answer:
 1. 
-Situation:
+**Situation:**
 Our internal tool relied heavily on text-based log search and parsing, we needed to explore ways
 
-Task:
+**Task:**
 I needed to find efficient alternatives for log searching and parsing that would improve speed and fault tolerance.
 
-Action:
+**Action:**
 I proactively explored new technologies beyond our usual stack. I learned about Manticore Search, a lightweight alternative to Elasticsearch, and studied its integration model. I also evaluated various parsing tools but realized that building custom parsers would give us better control and performance. I took time to understand log structures, indexing techniques, and how to optimize query speed.
 
-Result:
+**Result:**
 By adopting Manticore and implementing custom parsers, I achieved significantly faster log processing and improved the system’s fault tolerance. This not only solved the performance issues but also expanded our team’s knowledge base on search technologies.
 
 2. 
-Situation: I initially joined the team as a node js backend engineer, but key services for our ticket triaging and dials were backend-heavy, involving Java, Python, and Kubernetes.
+**Situation:** I initially joined the team as a node js backend engineer, but key services for our ticket triaging and dials were backend-heavy, involving Java, Python, and Kubernetes.
 
-Task: To be effective, I had to quickly ramp up on backend technologies and Kubernetes.
+**Task:** To be effective, I had to quickly ramp up on backend technologies and Kubernetes.
 
-Action: I self-learned backend flows, started debugging services in Java/Python, and completed the CKAD certification to understand Kubernetes better.
+**Action:** I self-learned backend flows, started debugging services in Java/Python, and completed the CKAD certification to understand Kubernetes better.
 
-Result: This enabled me to debug cross-service issues confidently and drive improvements in our triaging pipeline, especially during high-pressure release windows.
+**Result:** This enabled me to debug cross-service issues confidently and drive improvements in our triaging pipeline, especially during high-pressure release windows.
 
 ---
 
@@ -161,16 +161,16 @@ If it’s time-critical, I let them shadow a senior teammate to learn quickly an
 
 This approach helps them feel supported, builds confidence, and ensures we deliver as a team.
 
-Situation:
+**Situation:**
 A new teammate was struggling with understanding our internal log analysis architecture and was missing deadlines.
 
-Task:
+**Task:**
 Although not a mentor officially, I decided to step in and help onboard him faster.
 
-Action:
+**Action:**
 I created a simplified architecture diagram, walked him through workflows over multiple sessions, and paired on debugging issues together.
 
-Result:
+**Result:**
 He quickly became productive and later contributed major improvements to the tool. He appreciated the support and later credited it as key to his onboarding.
 
 ---
@@ -180,13 +180,13 @@ Q: Tell me about a time you went above and beyond for a customer.
 
 Answer:
 1. 
-Situation:
+**Situation:**
 At Nutanix, we faced a production issue where a key service was intermittently crashing, affecting customer access. It was early morning, and we had less than 30 minutes before peak business hours.
 
-Task:
+**Task:**
 I had to act quickly to stabilize the service without waiting for a full root cause analysis — the priority was to avoid business-hour impact and customer escalations.
 
-Action:
+**Action:**
 I immediately scanned heap dumps and JVM GC logs. I noticed full GCs were not freeing up memory — a clear sign of a memory leak. With little time to experiment, I made two quick decisions:
 
 Increased the JVM heap as a temporary buffer.
@@ -195,19 +195,19 @@ Disabled a newly released feature that was showing correlation with the memory i
 
 I chose these based on recent deployment history and memory metrics — even though I didn’t have conclusive proof yet, it was the safest risk-balanced path.
 
-Result:
+**Result:**
 The service stabilized within 30 minutes and customer impact was avoided. After that, I worked with the owning team to:
 
 Trace the leak to a flaw in cache eviction logic.
 
 2. 
-Situation: Internal developers often had to run our log analysis tool multiple times on the same log bundle. However, the tool was using cached results after the first run, leading to stale data and incorrect outputs.
+**Situation:** Internal developers often had to run our log analysis tool multiple times on the same log bundle. However, the tool was using cached results after the first run, leading to stale data and incorrect outputs.
 
-Task: I needed to build a refresh mechanism so developers could re-run the tool and get accurate results without manual intervention.
+**Task:** I needed to build a refresh mechanism so developers could re-run the tool and get accurate results without manual intervention.
 
-Action: I implemented a refresh functionality that intelligently bypassed the cache. To optimize performance, it reprocessed only the newly added or updated rules instead of running everything from scratch.
+**Action:** I implemented a refresh functionality that intelligently bypassed the cache. To optimize performance, it reprocessed only the newly added or updated rules instead of running everything from scratch.
 
-Result: This eliminated the manual step of deleting cache files, saving developer time and preventing errors. The tool became more reliable and user-friendly for internal teams.
+**Result:** This eliminated the manual step of deleting cache files, saving developer time and preventing errors. The tool became more reliable and user-friendly for internal teams.
 
 ---
 
@@ -216,13 +216,13 @@ Q: Describe a time you improved quality in your work.
 
 Answer:
 
-Situation: The ticket update flow was manual and error-prone, leading to delays and inconsistent updates.
+**Situation:** The ticket update flow was manual and error-prone, leading to delays and inconsistent updates.
 
-Task: I wanted to ensure every ticket was updated promptly and accurately.
+**Task:** I wanted to ensure every ticket was updated promptly and accurately.
 
-Action: I automated the end-to-end ticket update process, including validations, comments, and transitions.
+**Action:** I automated the end-to-end ticket update process, including validations, comments, and transitions.
 
-Result: This reduced ticket closure time by 30%, ensuring better tracking and quality control across triaged issues.
+**Result:** This reduced ticket closure time by 30%, ensuring better tracking and quality control across triaged issues.
 
 ---
 
@@ -231,26 +231,26 @@ Q: Tell me about a time you had a disagreement about a technical approach.
 Q: tell me about a time when you took an unpopular stance in a meeting with peers and your leader and you were the outlier
 Answer:
 1. 
-Situation:
+**Situation:**
 We were building a log analysis system that required fast and scalable text search capabilities across large volumes of machine-generated logs.
 
-Task:
+**Task:**
 The team was inclined to use Elasticsearch, a popular and proven search engine. However, I believed it might be overkill for our use case and wanted to explore alternatives.
 
-Action:
+**Action:**
 I suggested using Manticore Search, which is lighter weight and simpler to manage. My teammates initially disagreed, citing Elasticsearch’s wide adoption and community support. I understood their concerns, but I benchmarked both options using our real log samples. I demonstrated that Manticore could handle our scale—millions of logs—efficiently on a single 32-core VM, without needing to set up and manage a distributed cluster.
 
-Result:
+**Result:**
 The team agreed to adopt Manticore. We achieved high performance with lower infrastructure overhead and reduced operational complexity. This decision saved compute resources and made our system easier to maintain in the long run.
 
 2. 
-Situation: In our internal tool, there was conflict over whether to download logs (more fault-tolerant) or mount them (faster but less reliable).
+**Situation:** In our internal tool, there was conflict over whether to download logs (more fault-tolerant) or mount them (faster but less reliable).
 
-Task: We had to choose an optimal method without compromising on either reliability or performance.
+**Task:** We had to choose an optimal method without compromising on either reliability or performance.
 
-Action: I proposed a hybrid approach — download smaller logs and mount larger ones. I facilitated the discussion by focusing on trade-offs and validating assumptions.
+**Action:** I proposed a hybrid approach — download smaller logs and mount larger ones. I facilitated the discussion by focusing on trade-offs and validating assumptions.
 
-Result: This resolved the conflict, improved performance, and retained fault tolerance. Everyone was aligned around a data-backed, balanced solution.
+**Result:** This resolved the conflict, improved performance, and retained fault tolerance. Everyone was aligned around a data-backed, balanced solution.
 
 ---
 
@@ -263,44 +263,44 @@ troubleshooting time for support engineers by providing Al-driven insights deriv
 
 Answer:
 
-Situation: The our internal tool report generation process took 30+ minutes, delaying insights during critical incidents.
+**Situation:** The our internal tool report generation process took 30+ minutes, delaying insights during critical incidents.
 
-Task: Reduce the time taken without losing key data.
+**Task:** Reduce the time taken without losing key data.
 
-Action: I restructured the processing to run asynchronously, added Redis caching, and load balanced using HAProxy.
+**Action:** I restructured the processing to run asynchronously, added Redis caching, and load balanced using HAProxy.
 
-Result: Report generation time dropped from 30 minutes to under 15 minutes, and eventually reduced execution time to 2 minutes after all optimizations — improving incident response dramatically. Early closures of approx 25% of tickets.
+**Result:** Report generation time dropped from 30 minutes to under 15 minutes, and eventually reduced execution time to 2 minutes after all optimizations — improving incident response dramatically. Early closures of approx 25% of tickets.
 
 ---
 
 # Give an example of a tough or critical piece of feedback you received
 
 1. 
-Situation:
+**Situation:**
 I received feedback that while my code was efficient, my documentation and handoffs lacked detail, making it hard for others to maintain or build upon.
 
-Task:
+**Task:**
 I needed to improve the clarity and completeness of my handoffs and knowledge sharing.
 
-Action:
+**Action:**
 I started writing clear READMEs, added inline comments, and began recording short video walkthroughs for major flows. I also created onboarding docs for new members using the tool.
 
-Result:
+**Result:**
 The feedback loop improved — peers found it easier to work with my code. One of my documents became the standard reference in our internal wiki.
 
 
 2. 
 
-Situation:
+**Situation:**
 At OLX, I was part of the Platform Engineering team where we worked primarily with Go, Kubernetes, and GitLab CI/CD pipelines.
 
-Task:
+**Task:**
 My manager advised me to strengthen my knowledge of Kubernetes and CI/CD pipelines so I could contribute more effectively to deployment workflows and platform automation tasks.
 
-Action:
+**Action:**
 I took this feedback seriously and enrolled in the CKAD (Certified Kubernetes Application Developer) certification to deepen my understanding. I also studied GitLab pipelines in detail and practiced by setting up dummy services with full deployment automation.
 
-Result:
+**Result:**
 Not only did this help me contribute more effectively at OLX, but the skills transferred well to my current role at Nutanix. I’ve been able to independently set up CI/CD pipelines and dockerize our internal tools for seamless deployment — reducing setup time and improving reliability.
 
 
@@ -311,45 +311,45 @@ Not only did this help me contribute more effectively at OLX, but the skills tra
 ---
 
 # Sacrificing Short-term for Long-term
-Situation:
+**Situation:**
 We had a quick fix to reduce false positives in our issue detection engine, which could be deployed immediately.
 
-Task:
+**Task:**
 I suggested we instead invest time in creating a parser suggestion engine and improve rule structures, which would take longer but offer better precision.
 
-Action:
+**Action:**
 Despite pressure for a quick fix, I got buy-in to build the better foundation. I created the suggestion parser and redesigned rules with log-level and file-source context.
 
-Result:
+**Result:**
 False positives dropped by 40%, and future rule creation became easier and more accurate. It delayed short-term gains but created long-term value.
 
 ---
 
 # Tell me about a time a customer wanted one thing, but you felt they needed something else
-similar to [](#Customer-Obsession)
-Situation:
+similar to [Customer Obsession](#Customer-Obsession)
+**Situation:**
 A customer wanted us to disable log analysis caching so they could rerun analysis each time with new rules.
 
-Task:
+**Task:**
 Disabling the cache would degrade performance for all users. I had to find a better alternative.
 
-Action:
+**Action:**
 I proposed and implemented a "refresh" feature that invalidates the cache selectively and reruns the analysis only on updated rules.
 
-Result:
+**Result:**
 The customer’s problem was solved without hurting performance. This solution became the recommended approach for all teams.
 
 ---
 
 # time when you didn't think you were going to meet the commitments you promised
-Situation:
+**Situation:**
 I was implementing a refresh functionality for our internal log analysis tool at Nutanix. Initially, the tool reprocessed all the rules every time a refresh was triggered, which was inefficient but functional.
 
-Task:
+**Task:**
 I had committed to delivering the refresh feature by a specific date. However, during implementation, I realized that processing only the newly added rules would make the system much more efficient. This optimization required changes to the schema and the way rules were stored and retrieved.
 
-Action:
+**Action:**
 I quickly realized that the optimization would take additional time and could put the original timeline at risk. I informed my manager and stakeholders, explaining the trade-off: either deliver the basic version on time or take a few extra days to build a smarter, more scalable solution. I demonstrated how the optimized path would improve performance and reduce future compute cost.
 
-Result:
+**Result:**
 They agreed to the delay. I delivered the optimized refresh functionality with schema changes, which reduced processing time and eliminated the need for full reprocessing. The outcome was more efficient, maintainable, and scalable — and saved the team manual overhead in the long run.
