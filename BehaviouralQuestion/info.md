@@ -1,14 +1,14 @@
 # Index
 
-- [Invent and Simplify || proposed a new idea or process](#Invent-and-Simplify)
-- [Ownership](#Ownership)
-- [Bias for Action || made a decision with incomplete data || worked against tight deadlines](#Bias-for-Action)
-- [Dive Deep || problem you solved by digging into the data](#Dive-Deep)
-- [Learn and Be Curious || something new you learned to solve a problem](#Learn-and-Be-Curious)
-- [Hire and Develop the Best / Teamwork || support teammates who are struggling](#Hire-and-Develop-the-Best-/-Teamwork)
-- [Customer Obsession || time you went above and beyond for a customer](#Customer-Obsession)
-- [Insist on the Highest Standards || time you improved quality in your work](#Insist-on-the-Highest-Standards)
-- [Have Backbone; Disagree and Commit || time when you took an unpopular stance in a meeting](#Have-Backbone;-Disagree-and-Commit)
+- [Invent and Simplify    ||    proposed a new idea or process](#Invent-and-Simplify)
+- [Ownership    ||    time you took ownership of a problem others ignored](#Ownership)
+- [Bias for Action    ||    made a decision with incomplete data || worked against tight deadlines](#Bias-for-Action)
+- [Dive Deep    ||    problem you solved by digging into the data](#Dive-Deep)
+- [Learn and Be Curious    ||    something new you learned to solve a problem](#Learn-and-Be-Curious)
+- [Hire and Develop the Best / Teamwork    ||    support teammates who are struggling](#Hire-and-Develop-the-Best-/-Teamwork)
+- [Customer Obsession    ||    time you went above and beyond for a customer](#Customer-Obsession)
+- [Insist on the Highest Standards    ||    time you improved quality in your work](#Insist-on-the-Highest-Standards)
+- [Have Backbone; Disagree and Commit    ||    time when you took an unpopular stance in a meeting](#Have-Backbone;-Disagree-and-Commit)
 - [Deliver Results](#Deliver-Results)
 - [Give an example of a tough or critical piece of feedback you received](#Give-an-example-of-a-tough-or-critical-piece-of-feedback-you-received)
 - [time when you took on something significant outside your area of responsibility](#time-when-you-took-on-something-significant-outside-your-area-of-responsibility)
@@ -17,8 +17,8 @@
 - [time when you didn't think you were going to meet the commitments you promised](#time-when-you-didn't-think-you-were-going-to-meet-the-commitments-you-promised)
 
 # Invent and Simplify
-Q: Give an example of a time you proposed a new idea or process. What was the response?
-Answer:
+Q: Give an example of a time you proposed a new idea or process. What was the response?<br>
+Answer:<br>
 1. 
 **Situation:** As a part of the central team, we often received tickets that didn’t belong to us because reporters randomly assigned issues without proper triage.
 
@@ -69,9 +69,9 @@ Answer:
 ---
 
 # Bias for Action
-Q: Tell me about a time you made a decision with incomplete data.
-Q: Tell me about a time when you have worked against tight deadlines and didn't have the time to consider all options before making a decision. What approach did you take?
-Answer:
+Q: Tell me about a time you made a decision with incomplete data.<br>
+Q: Tell me about a time when you have worked against tight deadlines and didn't have the time to consider all options before making a decision. What approach did you take?<br>
+Answer:<br>
 
 1. 
 **Situation:**
@@ -104,9 +104,9 @@ The service stabilized within 30 minutes and customer impact was avoided. After 
 ---
 
 # Dive Deep
-Q: Describe a problem you solved by digging into the data.
+Q: Describe a problem you solved by digging into the data.<br>
 
-Answer:
+Answer:<br>
 
 **Situation:**
 Our internal log analysis tool was generating many false positives when matching known issues from logs, which led to wasted debugging effort and delayed root cause identification.
@@ -123,9 +123,9 @@ These changes reduced false positives by 40%, improved detection accuracy, and m
 ---
 
 # Learn and Be Curious
-Q: Tell me about something new you learned to solve a problem.
+Q: Tell me about something new you learned to solve a problem.<br>
 
-Answer:
+Answer:<br>
 1. 
 **Situation:**
 Our internal tool relied heavily on text-based log search and parsing, we needed to explore ways
@@ -151,9 +151,9 @@ By adopting Manticore and implementing custom parsers, I achieved significantly 
 ---
 
 # Hire and Develop the Best / Teamwork
-Q: How do you support teammates who are struggling?
+Q: How do you support teammates who are struggling?<br>
 
-Answer:
+Answer:<br>
 
 If someone on my team is lagging behind, I first try to understand why — skill gaps, lack of clarity, or personal challenges.
 
@@ -176,9 +176,9 @@ He quickly became productive and later contributed major improvements to the too
 ---
 
 # Customer Obsession
-Q: Tell me about a time you went above and beyond for a customer.
+Q: Tell me about a time you went above and beyond for a customer.<br>
 
-Answer:
+Answer:<br>
 1. 
 **Situation:**
 At Nutanix, we faced a production issue where a key service was intermittently crashing, affecting customer access. It was early morning, and we had less than 30 minutes before peak business hours.
@@ -212,9 +212,11 @@ Trace the leak to a flaw in cache eviction logic.
 ---
 
 # Insist on the Highest Standards
-Q: Describe a time you improved quality in your work.
+Q: Describe a time you improved quality in your work.<br>
 
-Answer:
+similar to 
+[Give an example of a tough or critical piece of feedback you received](#Give-an-example-of-a-tough-or-critical-piece-of-feedback-you-received)<br>
+Answer:<br>
 
 **Situation:** The ticket update flow was manual and error-prone, leading to delays and inconsistent updates.
 
@@ -227,9 +229,9 @@ Answer:
 ---
 
 # Have Backbone; Disagree and Commit
-Q: Tell me about a time you had a disagreement about a technical approach.
-Q: tell me about a time when you took an unpopular stance in a meeting with peers and your leader and you were the outlier
-Answer:
+Q: Tell me about a time you had a disagreement about a technical approach.<br>
+Q: tell me about a time when you took an unpopular stance in a meeting with peers and your leader and you were the outlier<br>
+Answer:<br>
 1. 
 **Situation:**
 We were building a log analysis system that required fast and scalable text search capabilities across large volumes of machine-generated logs.
@@ -255,15 +257,15 @@ The team agreed to adopt Manticore. We achieved high performance with lower infr
 ---
 
 # Deliver Results
-Q: Describe a high-impact project you delivered.
+Q: Describe a high-impact project you delivered.<br>
 The system processes ingested log bundles associated with specific Jira tickets, identifies anomalies in
-system metrics and log entries within defined timeframes, and leverages SupportGPT to generate contextual summaries, potential Root Cause
-Analysis (RCA), and retrieve relevant historical issues. The primary objective is to significantly reduce
-troubleshooting time for support engineers by providing Al-driven insights derived from extensive log and metric data.
+system metrics and log entries within defined timeframes<br>
+and leverages SupportGPT to generate contextual summaries, potential Root Cause Analysis (RCA), and retrieve relevant historical issues. The primary objective is to significantly reduce
+troubleshooting time for support engineers by providing Al-driven insights derived from extensive log and metric data.<br>
 
-Answer:
+Answer:<br>
 
-**Situation:** The our internal tool report generation process took 30+ minutes, delaying insights during critical incidents.
+**Situation:** Our internal tool report generation process took 30+ minutes, delaying insights during critical incidents.
 
 **Task:** Reduce the time taken without losing key data.
 
@@ -305,7 +307,7 @@ Not only did this help me contribute more effectively at OLX, but the skills tra
 
 
 # time when you took on something significant outside your area of responsibility
-[similar to Ownership](#Ownership)
+[similar to Ownership](#Ownership)<br>
 
 
 ---
@@ -326,7 +328,7 @@ False positives dropped by 40%, and future rule creation became easier and more 
 ---
 
 # Tell me about a time a customer wanted one thing, but you felt they needed something else
-similar to [Customer Obsession](#Customer-Obsession)
+similar to [Customer Obsession](#Customer-Obsession)<br>
 **Situation:**
 A customer wanted us to disable log analysis caching so they could rerun analysis each time with new rules.
 
