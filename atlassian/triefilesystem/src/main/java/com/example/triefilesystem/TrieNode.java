@@ -22,5 +22,8 @@ public class TrieNode {
     public int getValue(){
         return value;
     }
+    public void setValue(int v){
+        value=v;
+    }
 
 }

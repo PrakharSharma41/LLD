@@ -11,8 +11,8 @@ public class TriefilesystemApplication {
 		System.out.println(fileSystem.createPath("/a", 1));
 		System.out.println(fileSystem.createPath("/a/b", 2));
 		System.out.println(fileSystem.createPath("/a/bd", 2));
-		System.out.println(fileSystem.createPath("/a/b/c", 2));
-		System.out.println(fileSystem.get("/a/bd"));
+		System.out.println(fileSystem.createPath("/a/b/c", 20));
+		System.out.println(fileSystem.get("/a/b/c"));
 	}
 
 }

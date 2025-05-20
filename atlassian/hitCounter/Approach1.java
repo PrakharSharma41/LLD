@@ -16,4 +16,3 @@ public class Approach1 {
         return q.size();
     }
 }
-// 4 3 2 1

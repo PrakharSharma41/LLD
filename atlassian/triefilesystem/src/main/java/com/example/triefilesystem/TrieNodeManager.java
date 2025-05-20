@@ -34,3 +34,8 @@ public class TrieNodeManager {
         return node.value;
     }
 }
+// /
+// a 
+// b    bd
+// c
+// /a/b/c/d

@@ -17,6 +17,23 @@ public class Board {
         }
         return true;
     }
+
+    // public Point validPoint(Point newHead){
+    //     if(newHead.getY()==width){
+    //         return new Point(newHead.getX(),0);
+    //     }
+    //     else if(newHead.getY()<0){
+    //         return new Point(newHead.getX(),width-1);
+    //     }
+    //     else if(newHead.getX()==height){
+    //         return new Point(0,newHead.getY());
+    //     }
+    //     else if(newHead.getY()<0){
+    //         return new Point(height-1,newHead.getY());
+    //     }
+    //     return newHead;
+    // }
+
     public boolean isFoodPoint(Point p){
         boolean foodPresent=food.contains(p);
         System.out.println("foodpresent is "+foodPresent+" at "+p);
