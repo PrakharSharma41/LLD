@@ -13,6 +13,9 @@ public class SnakeGame {
         board=new Board(width, height);
         snake=new Snake();
     }
+    public void addSnakeBody(Point p){
+        snake.setSnakeBody(p);
+    }
     public void moveSnake(String dir){
         Direction direction=Direction.fromString(dir);
         inputCount++;

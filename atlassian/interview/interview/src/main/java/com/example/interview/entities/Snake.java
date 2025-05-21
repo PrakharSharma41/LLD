@@ -12,15 +12,19 @@ public class Snake {
     public Snake(){
         bodySet=new HashSet<>();
         snake=new LinkedList<>();
-        Point p=new Point(10, 10);
-        snake.add(p);
-        bodySet.add(p);
-        p=new Point(9, 10);
-        bodySet.add(p);
-        snake.add(p);
-        p=new Point(8, 10);
-        bodySet.add(p);
-        snake.add(p);
+        // Point p=new Point(10, 10);
+        // snake.add(p);
+        // bodySet.add(p);
+        // p=new Point(9, 10);
+        // bodySet.add(p);
+        // snake.add(p);
+        // p=new Point(8, 10);
+        // bodySet.add(p);
+        // snake.add(p);
+    }
+    public void setSnakeBody(Point snakeBody){
+        snake.add(snakeBody);
+        bodySet.add(snakeBody);
     }
     public boolean move(Point newHead,boolean grow){
         Point tail;
