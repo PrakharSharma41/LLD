@@ -1,8 +1,7 @@
-package amazonLocker;
 
 public class Main {
     public static void main(String[] args) {
-        LockerController lockerController=new LockerController();
+        LockerService lockerController=new LockerService();
         lockerController.createLocker(1);
         lockerController.createLocker(2);
         lockerController.createLocker(3);

@@ -1,4 +1,3 @@
-package amazonLocker;
 
 public class User {
     int id;

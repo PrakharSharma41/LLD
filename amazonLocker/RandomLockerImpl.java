@@ -1,4 +1,3 @@
-package amazonLocker;
 
 import java.util.ArrayList;
 import java.util.List;

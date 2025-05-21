@@ -33,8 +33,8 @@ class MeetingRoom{
     public MeetingRoom(String name) {
         this.name = name;
         bookedMeetings = new TreeSet<>(Comparator
-    .comparing(Meeting::getStartTime)
-    .thenComparing(Meeting::getEndTime));
+        .comparing(Meeting::getStartTime)
+        .thenComparing(Meeting::getEndTime));
     }
     @Override
     public String toString() {

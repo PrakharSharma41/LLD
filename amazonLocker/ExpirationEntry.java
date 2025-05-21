@@ -1,4 +1,3 @@
-package amazonLocker;
 
 class ExpirationEntry implements Comparable<ExpirationEntry>{
     private long expiryTime;

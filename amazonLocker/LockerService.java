@@ -1,4 +1,3 @@
-package amazonLocker;
 
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -8,14 +7,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class LockerController {
+public class LockerService {
     private final Map<Integer, Locker> freeLocker;
     private PriorityQueue<ExpirationEntry>expiryQueue;
     private ScheduledExecutorService cleanupScheduler;
     private LockerStrategy lockerStrategy;
     OtpHandler otpHandler;
     private final Map<Integer, String> otpMap = new ConcurrentHashMap<>();
-    LockerController(){
+    LockerService(){
         freeLocker= new ConcurrentHashMap<>();
         expiryQueue=new PriorityQueue<>();
         cleanupScheduler=Executors.newSingleThreadScheduledExecutor();

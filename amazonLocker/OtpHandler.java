@@ -1,4 +1,3 @@
-package amazonLocker;
 
 public class OtpHandler {
     public String generateOtp(){
