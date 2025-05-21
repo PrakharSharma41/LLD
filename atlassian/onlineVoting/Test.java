@@ -11,7 +11,7 @@ public class Test{
         VotingSystem system = new VotingSystem();
         List<List<String>> ballots = Arrays.asList(
             Arrays.asList("A", "B", "C"),
-            Arrays.asList("B", "A", "C"),
+            Arrays.asList("B", "C", "A"),
             Arrays.asList("C", "A", "B")
         );
 
@@ -19,3 +19,6 @@ public class Test{
         System.out.println(results);
     }    
 }
+// A 7
+// B 6
+// C 5
