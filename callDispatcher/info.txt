@@ -1,0 +1,9 @@
+Design a call dispatcher service
+asked in amazon
+
+FR:
+1. call center can accept request
+2. assign a call to the handler
+3. increase the priority of call in case no one answered i.e call escalation
+4. concurrency call handling
+5. call queuing in case there is huge inflow

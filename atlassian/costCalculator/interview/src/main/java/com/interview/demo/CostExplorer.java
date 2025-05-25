@@ -18,22 +18,15 @@ public class CostExplorer {
     }
     public void getMonthlyCosts(){
         Customer customer=customerService.getCustomer();
+        List<Double> monthlyPrice=new ArrayList<>();
+        for(int i=0;i<=12;i++)monthlyPrice.add(0.0);
+
         SubscriptionPeriod period=customer.getCustomerSubscriptionPeriod();
         double monthPrice=period.getPlan().getPrice();
 
         LocalDate date=period.getFrom();
-
-
-
         int monthValue=date.getMonthValue();
-
-        List<Double> monthlyPrice=new ArrayList<>();
-        for(int i=0;i<=12;i++)monthlyPrice.add(0.0);
-    
-        // 2022-03-10
         int dayOfStartMonth=date.getDayOfMonth();
-
-        // 9.99- (10 days price)
         double startMonthPrice=monthPrice-((double)((dayOfStartMonth-1)*monthPrice)/30.0);
         monthlyPrice.set(monthValue, startMonthPrice);
 
