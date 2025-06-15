@@ -2,6 +2,9 @@ package elevator;
 
 public class ElevatorDemo {
     public static void main(String[] args) {
+        // use below code if only one elevator is required
+        // dont use elevator controller in this case
+        
         // ElevatorHandler elevatorHandler=new ElevatorHandler(0,0);
         // Request upRequest1 = new Request(elevatorHandler.elevator.getCurrentFloor(), 5, Direction.UP, Location.INSIDE_ELEVATOR);
         // Request upRequest2 = new Request(elevatorHandler.elevator.getCurrentFloor(), 3, Direction.UP, Location.INSIDE_ELEVATOR);
