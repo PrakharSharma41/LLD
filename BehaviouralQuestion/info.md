@@ -1,8 +1,8 @@
 # Index
 
 - [Describe a situation in which you had to arrive at a compromise with someone to move a project forward   ||   Tell me about a time you were working on a project where your co-collaborators were holding back the process.](#Describe-a-situation-in-which-you-had-to-arrive-at-a-compromise-with-someone-to-move-a-project-forward)
-- [Tell me about a time that you had to balance competing business, team, or project priorities.   ||   Tell me about a time when you had to make a decision without all the information you needed.](#Tell-me-about-a-time-that-you-had-to-balance-competing-business,-team,-or-project-priorities)
-- [Tell me about a time your first impression of a person or situation was incorrect.   ||   Tell me about a time you had a different point of view about how to solve a problem with someone on your team. || Have Backbone; Disagree and Commit    ||    time when you took an unpopular stance in a meeting](#Have-Backbone;-Disagree-and-Commit)
+- [Tell me about a time that you had to balance competing business, team, or project priorities.   ||   Tell me about a time when you had to make a decision without all the information you needed.](#Tell-me-about-a-time-that-you-had-to-balance-competing-business-or-team-or-project-priorities)
+- [Tell me about a time your first impression of a person or situation was incorrect.   ||   Tell me about a time you had a different point of view about how to solve a problem with someone on your team. || Have Backbone; Disagree and Commit    ||    time when you took an unpopular stance in a meeting](#Have-Backbone-Disagree-and-Commit)
 - [ Share an example of a time when you were able to turn around the performance of an individual or team.   ||   Invent and Simplify    ||    proposed a new idea or process](#Invent-and-Simplify)
 - [Tell me about a time when you had to make a tradeoff that involved potentially causing pain for a user or customer.  ||  Tell me about a time when you advocated for the customer, despite opposition.](#Tell-me-about-a-time-when-you-had-to-make-tradeof-that-involved-causing-pain-for-a-user-or-customer)
 - [Ownership    ||    time you took ownership of a problem others ignored](#Ownership)
@@ -37,7 +37,7 @@ We unblocked RDM integration, and the model scaled to other restricted deploymen
 
 ---
 
-# Tell me about a time that you had to balance competing business, team, or project priorities
+# Tell me about a time that you had to balance competing business or team or project priorities
 
 **Situation:**
 I was on production on-call duty for our team when a high-priority customer issue came in. At the same time, I was also working on a critical feature that was scheduled for a demo day just a couple of days away.
@@ -59,7 +59,7 @@ The feature was delivered in time, and the demo went smoothly.
 
 ---
 
-# Have Backbone; Disagree and Commit
+# Have Backbone Disagree and Commit
 Q: Tell me about a time you had a disagreement about a technical approach.<br>
 Q: tell me about a time when you took an unpopular stance in a meeting with peers and your leader and you were the outlier<br>
 Answer:<br>
