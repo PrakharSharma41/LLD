@@ -368,16 +368,17 @@ Answer:<br>
 
 1. 
 **Situation:**
-I received feedback that while my code was efficient, my documentation and handoffs lacked detail, making it hard for others to maintain or build upon.
+During one of my performance review cycles, I received feedback from my manager that was hard to hear but extremely valuable. They pointed out that a few tickets assigned to me had been incorrectly reassigned to other teams, even though the root cause actually fell within the scope of our own service.
 
 **Task:**
-I needed to improve the clarity and completeness of my handoffs and knowledge sharing.
+At the time, I believed I was triaging appropriately and escalating based on ownership. But this feedback revealed that I hadn't built a deep enough understanding of our service boundaries and responsibilities — and that could lead to broken ownership and delay in resolution for the customer.
 
 **Action:**
-I started writing clear READMEs, added inline comments, and began recording short video walkthroughs for major flows. I also created onboarding docs for new members using the tool.
+Instead of becoming defensive, I took it as a cue to go deeper. I started investing time in understanding our service architecture more thoroughly — I read through internal documentation, traced service call flows for real incidents, and shadowed teammates during on-calls to learn how they debugged ownership boundaries. I also created a quick reference map of common dependencies to make future triaging more accurate and easier for others as well.
 
 **Result:**
-The feedback loop improved — peers found it easier to work with my code. One of my documents became the standard reference in our internal wiki.
+Within a couple of months, my triaging became much sharper. I could confidently debug more complex issues, which made me more effective during on-call and improved the team's trust in my judgment. In the next review cycle, my manager appreciated the growth and called out my increased technical depth and sense of ownership.
+
 
 
 2. 

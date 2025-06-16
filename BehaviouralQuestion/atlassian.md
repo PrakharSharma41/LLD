@@ -3,7 +3,7 @@ PLAY, AS A TEAM:
 2. Tell me about a time you were working on a project where your co-collaborators were holding back the process. rdm deployment case
 
 BUILD WITH HEART AND BALANCE:
-3. Tell me about a time that you had to balance competing business, team, or project priorities. - oncall along with feature development answer
+3. Tell me about a time that you had to balance competing business, team, or project priorities. - oncall along with feature development answr
 4. Tell me about a time when you had to make a decision without all the information you needed. - oncall answer
 
 OPEN COMPANY, NO BULLSHIT:
@@ -17,3 +17,7 @@ BE THE CHANGE YOU SEEK:
 DON’T #@!% THE CUSTOMER:
 9. Tell me about a time when you had to make a tradeoff that involved potentially causing pain for a user or customer.
 10. Tell me about a time when you advocated for the customer, despite opposition.
+
+
+
+
