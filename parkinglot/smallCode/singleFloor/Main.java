@@ -23,3 +23,18 @@ public class Main {
         System.out.println(ticket4);
     }
 }
+
+// schema:
+
+// Vehicle table:
+// vehicle_id, registration number, user_id,vehicleType(car/bike/truck/van)
+
+// Spot table:
+// spot_id, floor_id, vehicle_id,vehicleType (spot available can be determined by vehicle_id is null or not)
+
+// Ticket table:
+// ticket_id, user_id, List<spot_ids>
+
+// User table:
+// user_id, name, mobile, vehicle_id
+
