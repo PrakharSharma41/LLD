@@ -1,0 +1,48 @@
+2 approach to manage seats: 
+
+1. we create flight_seats table and each seat will be present multiple times based on flight_id.
+2. we use booking tables to find available seats for a flight and store available seats in cache
+
+Approach 1.
+Tables:
+
+aircraft
+aircraft_id,model,total_seats
+
+seat
+seat_id,aircraft_id,seat_number,class
+
+flight
+flight_id,flight_number,aircraft_id,source_airport,destination_airport,departure_time,arrival_time,status
+
+passenger
+passenger_id,name,email,phone
+
+flight_seat
+flight_seat_id,flight_id,seat_id,seat_number,class,status (AVAILABLE / BOOKED / BLOCKED / MAINTENANCE),price
+
+booking
+booking_id,passenger_id,flight_id,booking_time,status,total_price
+
+booking_seat
+booking_id,flight_seat_id
+
+Approach 2:
+
+aircraft
+aircraft_id,model,total_seats
+
+seat
+seat_id,aircraft_id,seat_number,class
+
+flight
+flight_id,flight_number,aircraft_id,source_airport,destination_airport,departure_time,arrival_time,status
+
+passenger
+passenger_id,name,email,phone
+
+booking
+booking_id,passenger_id,flight_id,booking_time,status,total_price
+
+booking_seat  (this table is used because one booking can have multiple seats) seat_id,flight_id combination must be unique
+booking_id,seat_id,flight_id,price_per_seat (optional)
