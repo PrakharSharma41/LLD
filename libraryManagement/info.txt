@@ -8,3 +8,6 @@ The system should handle concurrent access to the library catalog and member rec
 
 The system should enforce borrowing rules, such as a maximum number of books that can be borrowed at a time and loan duration.
 The system should be extensible to accommodate future enhancements and new features.
+
+use https://github.com/ashishps1/awesome-low-level-design/blob/main/solutions/java/src/librarymanagementsystem/LibraryManagementSystem.java
+
