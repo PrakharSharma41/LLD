@@ -1,3 +1,5 @@
+Separates the construction of a complex object from its representation.
+
 
 it is creational design pattern(creation of objects)
 when a class has multiple properties and most of them are optional properties 
