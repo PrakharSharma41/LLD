@@ -1,0 +1,19 @@
+users:
+user_id, name, email
+
+index on theatre table based on location
+theatre:
+theatre_id,name,location
+
+Index on theatre_id, show_time for fast filtering
+show:
+show_id,movie_id,theatre_id, start_time,end_time
+
+seats_data:
+seat_id,show_id,seat_number,seat_status
+
+booking:
+booking_id, user_id,show_id, booking_time,payment_status
+
+booking_seats:
+booking_id,seat_id

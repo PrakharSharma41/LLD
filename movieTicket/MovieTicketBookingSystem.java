@@ -54,16 +54,18 @@ public class MovieTicketBookingSystem {
         return shows.get(showId);
     }
 
-    public synchronized Booking bookTickets(User user, Show show, List<Seat> selectedSeats) {
-        if (areSeatsAvailable(show, selectedSeats)) {
-            markSeatsAsBooked(show, selectedSeats);
-            double totalPrice = calculateTotalPrice(selectedSeats);
-            String bookingId = generateBookingId();
-            Booking booking = new Booking(bookingId, user, show, selectedSeats, totalPrice, BookingStatus.PENDING);
-            bookings.put(bookingId, booking);
-            return booking;
+    public Booking bookTickets(User user, Show show, List<Seat> selectedSeats) {
+        synchronized (show) {
+            if (areSeatsAvailable(show, selectedSeats)) {
+                markSeatsAsBooked(show, selectedSeats);
+                double totalPrice = calculateTotalPrice(selectedSeats);
+                String bookingId = generateBookingId();
+                Booking booking = new Booking(bookingId, user, show, selectedSeats, totalPrice, BookingStatus.PENDING);
+                bookings.put(bookingId, booking);
+                return booking;
+            }
+            return null;
         }
-        return null;
     }
 
     private boolean areSeatsAvailable(Show show, List<Seat> selectedSeats) {
@@ -93,22 +95,28 @@ public class MovieTicketBookingSystem {
         return BOOKING_ID_PREFIX + timestamp + String.format("%06d", bookingNumber);
     }
 
-    public synchronized void confirmBooking(String bookingId) {
+    public void confirmBooking(String bookingId) {
         Booking booking = bookings.get(bookingId);
-        if (booking != null && booking.getStatus() == BookingStatus.PENDING) {
-            booking.setStatus(BookingStatus.CONFIRMED);
-            // Process payment and send confirmation
-            // ...
+        if (booking == null) return;
+    
+        synchronized (booking.getShow()) {
+            if (booking.getStatus() == BookingStatus.PENDING) {
+                booking.setStatus(BookingStatus.CONFIRMED);
+                // Add payment logic here
+            }
         }
     }
 
-    public synchronized void cancelBooking(String bookingId) {
+    public void cancelBooking(String bookingId) {
         Booking booking = bookings.get(bookingId);
-        if (booking != null && booking.getStatus() != BookingStatus.CANCELLED) {
-            booking.setStatus(BookingStatus.CANCELLED);
-            markSeatsAsAvailable(booking.getShow(), booking.getSeats());
-            // Process refund and send cancellation notification
-            // ...
+        if (booking == null) return;
+    
+        synchronized (booking.getShow()) {
+            if (booking.getStatus() != BookingStatus.CANCELLED) {
+                booking.setStatus(BookingStatus.CANCELLED);
+                markSeatsAsAvailable(booking.getShow(), booking.getSeats());
+                // Add refund logic here
+            }
         }
     }
 
