@@ -1,3 +1,5 @@
+The Strategy Design Pattern is ideal when you have multiple algorithms (strategies) for a task and want to choose one at runtime without changing the context code.
+
 
 this design pattern is used when there are multiple child class extending from parent class and and the method they
 are overriding is same across all child classes, then this design pattern is used.

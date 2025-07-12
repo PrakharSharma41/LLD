@@ -6,7 +6,9 @@ public class SingleTonTest {
     public static SingleTonTest createSingleTonTestObject(){
         if(test==null){
             synchronized(SingleTonTest.class){
-                test=new SingleTonTest();
+                if(test==null){
+                    test=new SingleTonTest();
+                }
             }
         }
         return test;
