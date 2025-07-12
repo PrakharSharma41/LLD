@@ -36,6 +36,12 @@ public class ParkingFloor {
         spot.setAvailable(false);
         System.out.println("parked");
         return new ParkingResult(201, spot, vehicle.getVehicleNumber());        
+        
+        // for thread safe
+        // boolean parked = spot.tryPark(vehicle);
+        // if (parked) {
+        //     return new ParkingResult(201, spot, vehicle.getVehicleNumber());
+        // }
     }        
     
     public int removeVehicle(ParkingSpot spot){

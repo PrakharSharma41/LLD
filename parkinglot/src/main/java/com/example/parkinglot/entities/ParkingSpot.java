@@ -1,5 +1,7 @@
 package com.example.parkinglot.entities;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class ParkingSpot {
     private String spotId;
     private boolean isAvailable;
@@ -51,4 +53,35 @@ public class ParkingSpot {
     public VehicleType getVehicleType() {
         return vehicleType;
     }    
+
+    // for thread safe
+    // private final ReentrantLock lock = new ReentrantLock();
+
+    // public boolean tryPark(Vehicle vehicle) {
+    //     if (lock.tryLock()) {
+    //         try {
+    //             if (!isAvailable) return false;
+    //             this.vehicle = vehicle;
+    //             this.isAvailable = false;
+    //             return true;
+    //         } finally {
+    //             lock.unlock();
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    // public boolean tryFree() {
+    //     if (lock.tryLock()) {
+    //         try {
+    //             if (isAvailable) return false; // already free
+    //             this.vehicle = null;
+    //             this.isAvailable = true;
+    //             return true;
+    //         } finally {
+    //             lock.unlock();
+    //         }
+    //     }
+    //     return false;
+    // }    
 }
