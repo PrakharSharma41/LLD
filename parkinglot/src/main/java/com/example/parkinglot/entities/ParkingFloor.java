@@ -8,6 +8,8 @@ import com.example.parkinglot.ParkingResult;
 
 public class ParkingFloor {
     int floorId;
+    // create a list of all parking spot for each vehicle type in interview
+    // instead of freeSpots and allSpots separately
     public HashMap<VehicleType,ConcurrentLinkedDeque<ParkingSpot>>freeSpots;
     public HashMap<VehicleType,ConcurrentLinkedDeque<ParkingSpot>>allSpots;
     public HashMap<VehicleType, AtomicInteger> freeSpotsSize;
