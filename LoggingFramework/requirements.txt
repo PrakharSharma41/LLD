@@ -1,0 +1,3 @@
+1- 📌 Multiple Sync: The framework should support logging in multiple places, such as console, log file, database, and distributed queue.
+2- 📌 Multiple Categories: The framework should support logging into multiple categories, such as info, debug, and error.
+3- 📌 Configurability: The category and logging location should be configurable.

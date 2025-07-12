@@ -13,7 +13,7 @@ public class Logger {
         FileLogger fileLogger=new FileLogger();
         loggerTargetObservable.addObserver(LogLevel.INFO, consoleLogger);
         loggerTargetObservable.addObserver(LogLevel.DEBUG, fileLogger);
-        loggerTargetObservable.addObserver(LogLevel.ERROR, consoleLogger);
+        loggerTargetObservable.addObserver(LogLevel.DEBUG, consoleLogger);
         return loggerTargetObservable;
     }
     public Logger() {
