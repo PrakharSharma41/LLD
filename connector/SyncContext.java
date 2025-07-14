@@ -20,3 +20,9 @@ public class SyncContext {
         return config;
     }
 }
+// config (Map)	
+// Passes connector-specific runtime configs like:
+// • Table name
+// • Batch size
+// • Optional filters
+// • Connection settings override

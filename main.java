@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 public class main {
     static class Doctor{
         public Doctor(int x){
@@ -12,5 +13,7 @@ public class main {
         List<Doctor>ls=new ArrayList<>(Arrays.asList(new Doctor(2)));
         List<Doctor>d=ls.stream().filter(d1->d1.x>2).toList();
         System.out.println(d.size());
+        Lock lock=new ReentrantLock();
+        lock.t
     }
 }

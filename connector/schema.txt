@@ -1,0 +1,45 @@
+ShardConfig Table (Only Config Info):
+| Field               | Type              | Purpose                                          |
+| ------------------- | ----------------- | ------------------------------------------------ |
+| `customer_id`       | UUID / PK         | Customer identifier                              |
+| `shard_id`          | String / PK       | Shard identifier                                 |
+| `host`              | String            | DB host                                          |
+| `port`              | Integer           | DB port                                          |
+| `is_continuous`     | Boolean           | `true` = continuous CDC <br> `false` = scheduled |
+| `schedule_interval` | Integer (minutes) | Run connector every X minutes (if scheduled)     |
+| `db_user`           | String            | DB user                                          |
+| `db_password`       | Encrypted String  | DB password (store securely)                     |
+| `other_configs`     | JSON              | Optional configs (timezone, etc.)                |
+
+
+SyncCheckpoint Table (Store Sync State):
+| Field               | Type        | Description                               |
+| ------------------- | ----------- | ----------------------------------------- |
+| `customer_id`       | UUID / PK   | Customer identifier                       |
+| `shard_id`          | String / PK | Shard identifier                          |
+| `table_name`        | String / PK | Table being processed                     |
+| `binlog_file`       | String      | Current binlog file                       |
+| `binlog_pos`        | Long        | Current binlog offset                     |
+| `last_synced_at`    | Timestamp   | Last sync time for this table             |
+| `next_execution_at` | Timestamp   | Next time this table is scheduled to sync |
+
+
+Merged: ExecutionHistory + RetryQueue:
+| Field             | Type                                          | Purpose                                         |
+| ----------------- | --------------------------------------------- | ----------------------------------------------- |
+| `execution_id`    | UUID / PK                                     | Unique execution/run identifier                 |
+| `customer_id`     | UUID                                          | Customer identifier                             |
+| `shard_id`        | String                                        | Shard name                                      |
+| `table_name`      | String                                        | Table involved in this execution                |
+| `start_time`      | Timestamp                                     | When the execution started                      |
+| `end_time`        | Timestamp                                     | When the execution ended                        |
+| `status`          | Enum (`SUCCESS`, `FAILED`, `RETRYING`, `DLQ`) | Execution status                                |
+| `records_synced`  | Long                                          | Number of records synced (or attempted)         |
+| `error_message`   | Text (nullable)                               | Failure reason                                  |
+| `event_data`      | JSON (nullable)                               | Event payload (for retry, optional for success) |
+| `schema_version`  | Integer                                       | Schema version                                  |
+| `retry_count`     | Integer                                       | Number of retries                               |
+| `binlog_file`     | String                                        | Binlog file at the time of execution            |
+| `binlog_position` | Long                                          | Binlog position at the time of execution        |
+| `created_at`      | Timestamp                                     | Insert time                                     |
+| `updated_at`      | Timestamp                                     | Last update time                                |
