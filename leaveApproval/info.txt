@@ -1,0 +1,6 @@
+Design a leave approval System
+example:
+if number of leaves is less than 3, then supervisor approves the request
+if number of leaves is >3 && <=7, manager approves
+if number of leaves>7 && <14, director approves
+else hr approves 
