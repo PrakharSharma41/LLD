@@ -1,0 +1,4 @@
+LLD for Search functionality in Booking App
+1. search functionality for hotels
+2. search can be based on different categories
+like hotelname, hotel close to location, some facility like swimming pool,gym etc
