@@ -1,0 +1,4 @@
+1. new discounts can be added at runtime
+2. multiple discounts can be applied to a single order
+3. both flat and percentage discounts
+4. discounts can/cannot be stacked
