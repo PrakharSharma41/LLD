@@ -1,4 +1,4 @@
-package snakeLadder;
+package shortCode.snakeLadder;
 
 import java.util.HashMap;
 import java.util.List;

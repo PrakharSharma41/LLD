@@ -1,4 +1,4 @@
-package snakeLadder;
+package shortCode.snakeLadder;
 
 public enum GameStatus {
     RUNNING,
