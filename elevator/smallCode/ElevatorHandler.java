@@ -29,38 +29,24 @@ public class ElevatorHandler {
             downQueue.add(request);
         }
     }
-
     public void processRequests(){
-        if(elevator.direction==Direction.UP||elevator.direction==Direction.IDLE){
-            processUpRequests();
-            processDownRequests();
+        if(elevator.direction==Direction.IDLE||elevator.direction==Direction.UP){
+            processRequestDirection(upQueue, Direction.UP);
         }else{
-            processDownRequests();
-            processUpRequests();
+            processRequestDirection(downQueue, Direction.DOWN);
         }
     }
-    private void processUpRequests(){
-        while(!upQueue.isEmpty()){
-            Request request=upQueue.poll();
+    private void processRequestDirection(PriorityQueue<Request>queue,Direction direction){
+        if(queue==null)return ;
+        while (!queue.isEmpty()) {
+            Request request=queue.poll();
             elevator.setCurrentFloor(request.getDestFloor());
-            System.out.println("elevator"+elevator+"stopped at "+elevator.getCurrentFloor());
+            System.out.println("elevator stopped at "+elevator.getCurrentFloor());
         }
-        if(!downQueue.isEmpty()){
-            elevator.setDirection(Direction.DOWN);
+        if(direction==Direction.IDLE||direction==Direction.UP){
+            processRequestDirection(downQueue, Direction.DOWN);
         }else{
-            elevator.setDirection(Direction.IDLE);
-        }
-    }
-    private void processDownRequests(){
-        while(!downQueue.isEmpty()){
-            Request request=downQueue.poll();
-            elevator.setCurrentFloor(request.getDestFloor());
-            System.out.println("elevator"+elevator+" stopped at "+elevator.getCurrentFloor());
-        }
-        if(!upQueue.isEmpty()){
-            elevator.setDirection(Direction.UP);
-        }else{
-            elevator.setDirection(Direction.IDLE);
+            processRequestDirection(upQueue, Direction.UP);
         }
     }
     public int getCurrentFloor(){

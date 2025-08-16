@@ -24,6 +24,7 @@ public class Dispatcher {
     public void completeCall(Call call) {
         call.status = CallStatus.COMPLETED;
         call.employee.status = EmployeeStatus.AVAILABLE;
+        checkQueueAndAssign();
     }
 
     public void checkQueueAndAssign() {
