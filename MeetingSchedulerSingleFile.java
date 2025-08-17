@@ -41,6 +41,13 @@ class MeetingRoom{
         return "MeetingRoom [name=" + name + "]";
     }    
     public boolean isAvailable(LocalDateTime start, LocalDateTime end) {
+        // Meeting lower = bookedMeetings.floor(new Meeting(start, start));
+        // Meeting higher = bookedMeetings.ceiling(new Meeting(start, start));
+        // if ((lower != null && !end.isBefore(lower.getEndTime())) ||
+        //     (higher != null && !higher.getStartTime().isAfter(end))) {
+        //     return false;
+        // }
+        // return true;        
         try{
             for (Meeting meeting : bookedMeetings) {
                 if (!(end.isBefore(meeting.getStartTime()) || start.isAfter(meeting.getEndTime()))) {
