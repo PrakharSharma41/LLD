@@ -1,0 +1,5 @@
+Meeting room can be allocated at any time in a day. There is no constraint on the time.
+Meeting room can be occupied for any time duration. Example for 30 mins or may be for 2 hours as well.
+Proper error message should be given incase meeting room can't be booked for given time slots.
+Send notification to person invited in meeting room
+Use calender invite to track date and time of meeting room
