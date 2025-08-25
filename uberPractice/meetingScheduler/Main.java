@@ -29,7 +29,7 @@ public class Main {
         boolean meeting3Result=scheduler.bookMeeting(interval, "meeting3", Arrays.asList(new User("user1", "email1")));
         System.out.println(meeting3Result);
 
-        startTime=LocalDateTime.of(2025, 8, 25, 13, 50);
+        startTime=LocalDateTime.of(2025, 8, 25, 14, 20);
         endTime=LocalDateTime.of(2025, 8, 25, 16, 55);
 
         interval=new Interval(startTime,endTime);
@@ -37,6 +37,18 @@ public class Main {
         System.out.println(meeting4Result);
 
 
+        startTime=LocalDateTime.of(2025, 8, 25, 13, 50);
+        endTime=LocalDateTime.of(2025, 8, 25, 13, 55);
+
+        interval=new Interval(startTime,endTime);
+        boolean meeting5Result=scheduler.bookMeeting(interval, "meeting5", Arrays.asList(new User("user1", "email1")));
+        System.out.println(meeting5Result);
+
+// room1:  
+// 12:30 to 13:30   14:30 to 15:00
+
+// room2:
+// 12:30 to 13:30   14:20 to 16:55
 
         // boolean meeting2Result=scheduler.bookMeeting(interval, "meeting2", Arrays.asList(new User("user1", "email1")));
 

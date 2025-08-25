@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MinSpillageStrategy implements BookingStrategy{
+public class MinSpillageStrategyImpl implements BookingStrategy{
     @Override
     public MeetingRoom findRoom(List<MeetingRoom> rooms, Interval interval) {
         MeetingRoom bestRoom = null;

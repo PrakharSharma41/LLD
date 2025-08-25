@@ -8,7 +8,7 @@ public class Scheduler {
     BookingStrategy bookingStrategy;
     Scheduler(){
         rooms=new ConcurrentHashMap<>();
-        bookingStrategy=new BookingStrategyImpl();
+        bookingStrategy=new MinSpillageStrategyImpl();
     }
     public void addRoom(String roomName){
         rooms.putIfAbsent(roomName, new MeetingRoom(roomName));
