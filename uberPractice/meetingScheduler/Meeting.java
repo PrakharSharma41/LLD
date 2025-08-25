@@ -33,8 +33,7 @@ public class Meeting implements Comparable<Meeting>{
         int cmp = this.interval.startTime.compareTo(o.interval.startTime);
         if (cmp != 0) return cmp;
         cmp = this.interval.endTime.compareTo(o.interval.endTime);
-        if (cmp != 0) return cmp;
-        return this.description.compareToIgnoreCase(o.description);
+        return cmp;
     }
     
 }

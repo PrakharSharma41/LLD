@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -32,4 +34,23 @@ public class MeetingRoom {
             lock.unlock();
         }
     }
+    public long calculateSpillage(Interval interval) {
+        Meeting before = calendar.meetings.floor(new Meeting(interval, null, null));
+        Meeting after = calendar.meetings.ceiling(new Meeting(interval, null, null));
+
+        // If not available → return -1
+        if (!checkAvailabality(interval)) {
+            return -1;
+        }
+
+        // Effective free slot boundaries
+        LocalDateTime slotStart = before == null ? LocalDateTime.MIN : before.getInterval().endTime;
+        LocalDateTime slotEnd   = after == null ? LocalDateTime.MAX : after.getInterval().startTime;
+
+        long slotDuration = Duration.between(slotStart, slotEnd).toMinutes();
+        long meetingDuration = Duration.between(interval.startTime, interval.endTime).toMinutes();
+
+        // Spillage = how much of the free slot is wasted after placing this meeting
+        return slotDuration - meetingDuration;
+    }    
 }
