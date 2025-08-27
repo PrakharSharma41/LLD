@@ -2,6 +2,9 @@ import java.security.KeyStore.Entry;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ExpiringCache{
     class Entry{
@@ -15,51 +18,78 @@ public class ExpiringCache{
         }
     }
     long ttlMillis;
-    HashMap<String,Entry>cache;
+    Map<String,Entry>cache;
+    Map<String,ReentrantLock>locks;
     Deque<Entry>deque;
     int count=0;
     int sum=0;
+    ReentrantLock globalLock = new ReentrantLock(); // for expiry queue
     ExpiringCache(long ttlMillis){
         deque=new LinkedList<>();
-        cache=new HashMap<>();
+        cache=new ConcurrentHashMap<>();
+        locks=new ConcurrentHashMap<>();
         this.ttlMillis=ttlMillis;
     }
     void put(String key,int value,long time){
         long expiryTime=time+ttlMillis;
-        Entry entry=new Entry(key, value, expiryTime);
-        if(cache.containsKey(key)){
-            Entry old=cache.get(key);
-            sum-=old.value;
-            count--;
+        ReentrantLock lock = locks.computeIfAbsent(key, k -> new ReentrantLock());
+        try{
+            lock.lock();
+            Entry entry=new Entry(key, value, expiryTime);
+            if(cache.containsKey(key)){
+                Entry old=cache.get(key);
+                sum-=old.value;
+                count--;
+            }
+            cache.put(key, entry);
+            deque.add(entry);
+            count++;sum+=value;
+    
+        }finally{
+            lock.unlock();
         }
-        cache.put(key, entry);
-        deque.add(entry);
-        count++;sum+=value;
     }  
 
     private void evictExpired(long now) {
         while (!deque.isEmpty() && deque.peekFirst().ttl <= now) {
             Entry expired = deque.pollFirst();
             // only remove if it's the latest for the key
-            Entry latest = cache.get(expired.key);
-            if (latest != null && latest.ttl == expired.ttl) {
-                cache.remove(expired.key);
-                sum -= expired.value;
-                count--;
+            ReentrantLock lock = locks.computeIfAbsent(expired.key, k -> new ReentrantLock());
+            try{
+                lock.lock();
+                Entry latest = cache.get(expired.key);
+                // System.out.println(latest.key);
+                if (latest != null && latest.ttl == expired.ttl) {
+                    cache.remove(expired.key);
+                    sum -= expired.value;
+                    count--;
+                }
+            }finally{
+                lock.unlock();
             }
         }
     }    
     Integer get(String key,long time){
-        evictExpired(time);
-        Entry entry=cache.get(key);
-        if(entry!=null&&entry.ttl>=time)return entry.value;
-        return null;
+        ReentrantLock lock = locks.computeIfAbsent(key, k -> new ReentrantLock());
+        // evictExpired(time);
+        try{
+            lock.lock();
+            Entry entry=cache.get(key);
+            if(entry==null||entry.ttl<=time)return null;
+            return entry.value;
+        }finally{
+            lock.unlock();
+        }
     }
     public Double getAverage(long timestamp) {
-        evictExpired(timestamp);
-
-        if (count == 0) return null;
-        return (double) sum / count;
+        try{
+            globalLock.lock();
+            evictExpired(timestamp);
+            if (count == 0) return null;
+            return (double) sum / count;    
+        }finally{
+            globalLock.unlock();;
+        }
     }
 
 }
