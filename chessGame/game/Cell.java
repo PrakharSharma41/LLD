@@ -1,6 +1,6 @@
 package game;
 
-import game.pieces.Piece;
+import snakeGame.pieces.Piece;
 
 public class Cell {
     Piece piece;

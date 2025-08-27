@@ -2,7 +2,7 @@ package game;
 
 import java.util.Scanner;
 
-import game.pieces.Piece;
+import snakeGame.pieces.Piece;
 
 public class ChessGame {
     private final Board board;

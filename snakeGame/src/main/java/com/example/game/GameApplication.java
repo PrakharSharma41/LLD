@@ -1,4 +1,4 @@
-package com.example.game;
+package snakeGame.src.main.java.com.example.game;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

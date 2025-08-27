@@ -1,8 +1,8 @@
 package game.pieces;
 
-import game.Board;
-import game.Cell;
 import game.Color;
+import snakeGame.Board;
+import snakeGame.Cell;
 
 public class Rook extends Piece{
 

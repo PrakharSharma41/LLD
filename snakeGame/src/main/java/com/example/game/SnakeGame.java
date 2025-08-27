@@ -1,4 +1,4 @@
-package com.example.game;
+package snakeGame.src.main.java.com.example.game;
 
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.game.entities;
+package snakeGame.src.main.java.com.example.game.entities;
 
 
 import java.util.Deque;

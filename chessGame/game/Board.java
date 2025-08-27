@@ -1,12 +1,12 @@
 package game;
 
-import game.pieces.Bishop;
-import game.pieces.King;
-import game.pieces.Knight;
-import game.pieces.Pawn;
-import game.pieces.Piece;
-import game.pieces.Queen;
-import game.pieces.Rook;
+import snakeGame.pieces.Bishop;
+import snakeGame.pieces.King;
+import snakeGame.pieces.Knight;
+import snakeGame.pieces.Pawn;
+import snakeGame.pieces.Piece;
+import snakeGame.pieces.Queen;
+import snakeGame.pieces.Rook;
 
 public class Board {
     Cell[][] board;

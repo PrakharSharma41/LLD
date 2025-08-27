@@ -1,4 +1,4 @@
-package com.example.game;
+package snakeGame.src.test.java.com.example.game;
 
 
 
