@@ -1,20 +1,17 @@
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 
 public class Meeting implements Comparable<Meeting>{
-    Interval interval;
+    LocalTime startTime;
+    LocalTime endTime;
     String description;
     List<User>user;
-    public Meeting(Interval interval, String description,List<User>users) {
-        this.interval = interval;
+    public Meeting(LocalTime startTime,LocalTime endTime, String description,List<User>users) {
+        this.startTime=startTime;
+        this.endTime=endTime;
         this.description = description;
         this.user=users;
-    }
-    public Interval getInterval() {
-        return interval;
-    }
-    public void setInterval(Interval interval) {
-        this.interval = interval;
     }
     public String getDescription() {
         return description;
@@ -30,9 +27,9 @@ public class Meeting implements Comparable<Meeting>{
     }
     @Override
     public int compareTo(Meeting o) {
-        int cmp = this.interval.startTime.compareTo(o.interval.startTime);
+        int cmp = this.startTime.compareTo(o.startTime);
         if (cmp != 0) return cmp;
-        cmp = this.interval.endTime.compareTo(o.interval.endTime);
+        cmp = this.endTime.compareTo(o.endTime);
         return cmp;
     }
     

@@ -1,5 +1,6 @@
+import java.time.LocalTime;
 import java.util.List;
 
 public interface BookingStrategy {
-    MeetingRoom findRoom(List<MeetingRoom>rooms,Interval interval);
+    MeetingRoom findRoom(List<MeetingRoom>rooms,LocalTime startTime,LocalTime endTime);
 }
