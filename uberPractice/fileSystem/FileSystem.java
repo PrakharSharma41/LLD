@@ -54,20 +54,27 @@ public class FileSystem {
         for(String p:parts){
             if(p.isEmpty())continue;
             if(p.equals("."))continue;
-            if(p.equals("..")){
+            if(p.equals("..")){                
                 if(dir.parent!=null)dir=dir.parent;
+                continue;
             }
-            Pattern compiledPattern=Pattern.compile(p);
-            Directory match=dir.getChild(p);
-            for(Directory d:dir.children.values()){
-                if(compiledPattern.matcher(d.name).find()){
-                    match=d;break;
+            try{
+                Pattern compiledPattern=Pattern.compile(p);
+                // Directory match=dir.getChild(p);
+                Directory match=null;
+                for(Directory d:dir.children.values()){
+                    if(compiledPattern.matcher(d.name).matches()){
+                        System.out.println(d);
+                        match=d;break;
+                    }
                 }
+                if(match==null){
+                    System.out.println(p+" not present");break;
+                }
+                dir=match;
+            }catch(Exception e){
+                System.out.println(e);
             }
-            if(match==null){
-                System.out.println(p+" not present");break;
-            }
-            dir=match;
         }
         current=dir;
         System.out.println("current directory is "+dir);
