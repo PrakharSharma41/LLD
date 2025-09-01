@@ -17,5 +17,9 @@ public class Task implements Comparable<Task>{
     public int compareTo(Task o) {
         return Long.compare(this.scheduleTime,o.scheduleTime);
     }
+    @Override
+    public String toString() {
+        return "Task [id=" + id + "]";
+    }
     
 }

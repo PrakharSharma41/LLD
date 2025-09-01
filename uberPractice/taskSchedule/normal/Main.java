@@ -2,7 +2,7 @@ package normal;
 
 public class Main {
     public static void main(String[] args) {
-        TaskScheduler scheduler = new TaskScheduler();
+        NormalScheduler scheduler = new NormalScheduler();
 
         scheduler.addTask(new Task("1",System.currentTimeMillis() + 4000,4000,() -> System.out.println("Task 1 executed")));
         scheduler.addTask(new Task("2", System.currentTimeMillis() + 1000,2000,() -> System.out.println("Task 2 executed")));
@@ -10,6 +10,7 @@ public class Main {
 
         new Thread(()->scheduler.runScheduler()).start();
         try {
+            
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
