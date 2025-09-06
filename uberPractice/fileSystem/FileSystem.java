@@ -18,16 +18,23 @@ public class FileSystem {
         }
         Directory parent;
         public Map<String,Directory>children;
+        Object lock;
         Directory(String name,Directory parent){
             this.name=name;this.parent=parent;
             children=new HashMap<>();
+            lock=new Object();
         }
-        Directory getChild(String path){
-            return children.get(path);
-        }
+        Directory getChild(String name) {
+            // synchronized (lock) {
+                return children.get(name);
+            // }
+        }       
         void addChild(Directory dir){
-            children.put(dir.name, dir);
+            // synchronized(lock){
+                children.put(dir.name, dir);
+            // }
         }
+
     }    
     Directory root;
     Directory current;
@@ -37,35 +44,44 @@ public class FileSystem {
     }
     public void mkdir(String path){
         String[]parts=path.split("/");
-        Directory dir=path.startsWith("/")?root:current;
+        Directory dir=path.startsWith("/")?root:getCurrent();
         for(String p: parts){
             if(p.isEmpty())continue;
-            Directory d1=dir.getChild(p);
-            if(d1==null){
-                d1=new Directory(p, dir);                
-                dir.addChild(d1);
+            Directory next;
+            synchronized (dir.lock) {
+                next = dir.getChild(p);
+                if (next == null) {
+                    next = new Directory(p, dir);
+                    dir.addChild(next);
+                }
             }
-            dir=d1;
+            dir = next;
         }
     }
     public void cd(String path){
         String[] parts=path.split("/");
-        Directory dir=path.startsWith("/")?root:current;
+        Directory dir=path.startsWith("/")?root:getCurrent();
         for(String p:parts){
             if(p.isEmpty())continue;
             if(p.equals("."))continue;
             if(p.equals("..")){                
-                if(dir.parent!=null)dir=dir.parent;
+                synchronized (dir.lock) {
+                    if (dir.parent != null) {
+                        dir = dir.parent;
+                    }
+                }
                 continue;
             }
             try{
                 Pattern compiledPattern=Pattern.compile(p);
                 // Directory match=dir.getChild(p);
                 Directory match=null;
-                for(Directory d:dir.children.values()){
-                    if(compiledPattern.matcher(d.name).matches()){
-                        System.out.println(d);
-                        match=d;break;
+                synchronized (dir.lock) {
+                    for (Directory child : dir.children.values()) {
+                        if (compiledPattern.matcher(child.name).matches()) {
+                            match = child;
+                            break;
+                        }
                     }
                 }
                 if(match==null){
@@ -76,13 +92,13 @@ public class FileSystem {
                 System.out.println(e);
             }
         }
-        current=dir;
+        setCurrent(dir);
         System.out.println("current directory is "+dir);
     }
     public String pwd(){
         if(root==current)return "/";
         List<String> path = new ArrayList<>();
-        Directory node = current;
+        Directory node = getCurrent();
         while (node != null && node != root) {
             path.add(node.name);
             node = node.parent;
@@ -90,5 +106,14 @@ public class FileSystem {
         Collections.reverse(path);
         return "/" + String.join("/", path);
     }
-
+    private Directory getCurrent() {
+        synchronized (current.lock) {
+            return current;
+        }
+    }
+    private void setCurrent(Directory dir) {
+        synchronized (current.lock) {
+            current = dir;
+        }
+    }    
 }
