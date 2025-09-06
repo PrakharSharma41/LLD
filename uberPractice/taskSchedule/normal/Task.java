@@ -7,15 +7,19 @@ public class Task implements Comparable<Task>{
     long scheduleTime;
     Runnable runnable;
     long interval; 
-    public Task(String id, long scheduleTime,long interval, Runnable runnable) {
+    TaskType type;
+    public Task(String id, long scheduleTime,long interval, Runnable runnable,TaskType type) {
         this.id = id;
         this.interval=interval;
         this.scheduleTime = scheduleTime;
         this.runnable = runnable;
+        this.type=type;
     }
     @Override
     public int compareTo(Task o) {
-        return Long.compare(this.scheduleTime,o.scheduleTime);
+        int cmp= Long.compare(this.scheduleTime,o.scheduleTime);
+        if(cmp!=0)return cmp;
+        return id.compareTo(o.id);
     }
     @Override
     public String toString() {

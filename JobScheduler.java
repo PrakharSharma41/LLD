@@ -46,9 +46,7 @@ public class JobScheduler {
                     newTaskAdded.await(timeToSleep, TimeUnit.MILLISECONDS);
                     continue;  // Check queue again after waking up
                 }    
-            }catch(Exception e){
-            } 
-            finally {
+            }finally {
                 lock.unlock();
             }
             ScheduledJob scheduledJob = jobQueue.poll();

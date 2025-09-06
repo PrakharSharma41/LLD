@@ -2,6 +2,7 @@ package normal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -23,18 +24,25 @@ public class TaskScheduler {
                     long delay = task.scheduleTime - System.currentTimeMillis();
                     if (delay > 0) {
                         taskQueue.offer(task);
+                        
                         Thread.sleep(Math.min(delay, 100)); 
                     } else {
-                        threads.submit(task.runnable);
-                        task.scheduleTime=System.currentTimeMillis()+task.interval;
-                        taskQueue.offer(task);
+                        Future<?>future=threads.submit(task.runnable);
+                        if(task.type==TaskType.INTERVAL){
+                            future.get();
+                            task.scheduleTime=System.currentTimeMillis()+task.interval;
+                            taskQueue.offer(task);    
+                        }else{
+
+                        }
                     }  
                 }              
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
             }
         }
     }
     void stop(){
-        threads.shutdownNow();
+        threads.shutdown();
+        // threads.shutdownNow();
     }
 }

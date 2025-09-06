@@ -1,12 +1,13 @@
 package normal;
 
+
 public class Main {
     public static void main(String[] args) {
-        NormalScheduler scheduler = new NormalScheduler();
+        TaskScheduler scheduler = new TaskScheduler();
 
-        scheduler.addTask(new Task("1",System.currentTimeMillis() + 4000,4000,() -> System.out.println("Task 1 executed")));
-        scheduler.addTask(new Task("2", System.currentTimeMillis() + 1000,2000,() -> System.out.println("Task 2 executed")));
-        scheduler.addTask(new Task("3", System.currentTimeMillis() + 7000,1000,() -> System.out.println("Task 3 executed")));
+        scheduler.addTask(new Task("1",System.currentTimeMillis() + 4000,4000,() -> System.out.println("Task 1 executed"),TaskType.INTERVAL));
+        scheduler.addTask(new Task("2", System.currentTimeMillis() + 1000,2000,() -> System.out.println("Task 2 executed"),TaskType.ONE_TIME));
+        scheduler.addTask(new Task("3", System.currentTimeMillis() + 7000,1000,() -> System.out.println("Task 3 executed"),TaskType.ONE_TIME));
 
         new Thread(()->scheduler.runScheduler()).start();
         try {
@@ -15,6 +16,7 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        scheduler.stop();        
+        scheduler.stop();       
+        
     }
 }
