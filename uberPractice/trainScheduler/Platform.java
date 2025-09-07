@@ -2,27 +2,38 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentNavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Platform {
-    TreeMap<LocalTime,Train>trainMap;
+    ConcurrentNavigableMap<LocalTime,Train>trainMap;
     Integer id;
+    Lock lock;
     Platform(Integer id){
         this.id=id;
-        trainMap=new TreeMap<>();
+        trainMap=new ConcurrentSkipListMap<>();
+        lock=new ReentrantLock();
     }
     boolean isPlatformAvailable(LocalTime time,Duration duration){
-        Map.Entry<LocalTime,Train>etr=trainMap.floorEntry(time);
-        if(etr!=null){
-            Train floorTrain=etr.getValue();
-            Duration floorDuration=floorTrain.duration;
-            if(floorTrain.time.plus(floorDuration).isAfter(time))return false;
+        lock.lock();
+        try{
+            Map.Entry<LocalTime,Train>etr=trainMap.floorEntry(time);
+            if(etr!=null){
+                Train floorTrain=etr.getValue();
+                Duration floorDuration=floorTrain.duration;
+                if(floorTrain.time.plus(floorDuration).isAfter(time))return false;
+            }
+            Map.Entry<LocalTime,Train>ceil=trainMap.ceilingEntry(time);
+            if(ceil!=null){
+                Train ceilingTrain=ceil.getValue();
+                if(time.plus(duration).isAfter(ceilingTrain.time))return false;
+            }
+            return true;    
+        }finally{
+            lock.unlock();
         }
-        Map.Entry<LocalTime,Train>ceil=trainMap.ceilingEntry(time);
-        if(ceil!=null){
-            Train ceilingTrain=ceil.getValue();
-            if(time.plus(duration).isAfter(ceilingTrain.time))return false;
-        }
-        return true;
     }
     public LocalTime getNextAvailableTime(LocalTime arrival, Duration duration) {
         LocalTime time = arrival;
