@@ -1,11 +1,13 @@
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParkingLot {
     int floorCount;
     ParkingFloor[] floors;
     SpotSearchStrategy strategy;
     Map<String,Ticket>ticketMap;
+    AtomicInteger ticketCounter = new AtomicInteger(0);
     ParkingLot(int floorCount){
         this.floorCount=floorCount;
         floors=new ParkingFloor[floorCount];
@@ -26,7 +28,7 @@ public class ParkingLot {
             }            
             int floorId=spot.floorId;
             floors[floorId].park(spot, vehicle);
-            String ticketId=vehicle.id;
+            String ticketId="TICKET-" + ticketCounter.incrementAndGet();
             Ticket ticket=new Ticket(ticketId, spot);
             ticketMap.put(ticketId, ticket);
             return ticketId;    

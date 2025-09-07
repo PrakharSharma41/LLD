@@ -9,11 +9,11 @@ public class Main {
         String ticketId1=parkingLot.parkVehicle(car);
 
         String ticketId2=parkingLot.parkVehicle(bike);
+        parkingLot.unParkVehicle(ticketId2);
 
         Vehicle bike1=new Vehicle("123", VehicleType.BIKE);
         parkingLot.parkVehicle(bike1);
 
-        parkingLot.unParkVehicle("213");
-        parkingLot.parkVehicle(bike1);
+        // parkingLot.parkVehicle(bike1);
     }
 }

@@ -24,6 +24,7 @@ public class ParkingFloor {
     public void unpark(ParkingSpot spot){
         // synchronized(spot){
             spot.unpark();
+            System.out.println(spot+" is free");
         // }
     }
     public List<ParkingSpot> getAllSpots(){
