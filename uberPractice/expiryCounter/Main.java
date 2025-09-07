@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
-        ExpiryCounter counter = new ExpiryCounter(2000); // TTL = 2 seconds
+        ExpiryCounter counter = new ExpiryCounter(4000); // TTL = 2 seconds
 
         counter.addCounter("apple");
         counter.addCounter("apple");
