@@ -1,16 +1,17 @@
-package uberPractice.expiringCache;
 
+
+import java.util.Comparator;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ExpiringCach1e<K, V> {
+public class ExpiringCache1<K, V> {
     private final ConcurrentHashMap<K, CacheEntry<V>> cache = new ConcurrentHashMap<>();
     private final PriorityBlockingQueue<ExpirationEntry<K>> expiryQueue = new PriorityBlockingQueue<>();
     private final ScheduledExecutorService cleanupScheduler = Executors.newSingleThreadScheduledExecutor();
     private final ReentrantLock lock = new ReentrantLock();
 
-    public ExpiringCache() {
+    public ExpiringCache1() {
         // Schedule cleanup task to run periodically
         cleanupScheduler.scheduleAtFixedRate(this::cleanup, 1000, 1000, TimeUnit.MILLISECONDS);
     }
@@ -97,7 +98,7 @@ public class ExpiringCach1e<K, V> {
 
     // Main method for testing with multiple threads
     public static void main(String[] args) {
-        ExpiringCache<String, String> cache = new ExpiringCache<>();
+        ExpiringCache1<String, String> cache = new ExpiringCache1<>();
 
         // Thread pool for simulating concurrent access
         // ExecutorService executor = Executors.newFixedThreadPool(10);
