@@ -8,9 +8,9 @@ public class Main {
         new Thread(()->fs.mkdir("/abc/cd/ef")).start();
         // new Thread(()->fs.cd("./abc")).start();        
         new Thread(()->fs.cd("/abc/./cd")).start();
-        // try{
-        //     Thread.sleep(2000);
-        // }catch(Exception e){}
-        new Thread(()->System.out.println(fs.pwd())).start();      
+        try{
+            Thread.sleep(2000);
+        }catch(Exception e){}
+        new Thread(()->fs.pwd()).start();      
     }
 }

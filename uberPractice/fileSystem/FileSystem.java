@@ -104,6 +104,7 @@ public class FileSystem {
             node = node.parent;
         }
         Collections.reverse(path);
+        System.out.println("/" + String.join("/", path));
         return "/" + String.join("/", path);
     }
     private Directory getCurrent() {
